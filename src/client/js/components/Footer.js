@@ -11,7 +11,7 @@ export default class Footer extends Component {
       <div className="footer">
         <ul>
           <li>
-            <span>© 2017 RegExp.Ru</span>
+            <span>© 2017 RGXP.RU</span>
           </li>
           {
             this.props.dict.footer.links.map((item, index)=>

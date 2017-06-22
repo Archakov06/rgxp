@@ -41,15 +41,24 @@ export default class Pattern extends Component {
     }));
   }
 
-  setRating(id, status){
+  setRating(obj, status){
     const { setAction } = this.props.appActions;
 
-    this.props.axios.get(`rating/${id}/${status}`).then(function (response) {
-      if (response.data.status == 'SET_RATING')
-      setAction('SET_RATING', {
-        id: id,
-        status: status
-      });
+    const rating = status == 'down' ? parseInt(obj.rating) - 1 : parseInt(obj.rating) + 1;
+
+    this.props.axios({
+      method: 'PUT',
+      url: `https://594bb8b2ba07670011435299.mockapi.io/patterns/${obj.id}`,
+      data: {
+        rating: rating
+      }
+    }).then(function (response) {
+      if (response.data.hasOwnProperty('id')) {
+        setAction('SET_RATING', {
+          id: obj.id,
+          status: status
+        });
+      }
     }).catch(function (error) {
       console.error(error);
     });
@@ -95,13 +104,13 @@ export default class Pattern extends Component {
               }
             </ul>
             <ul className="pattern-block__pattern-vote">
-              <li onClick={this.setRating.bind(this, this.props.obj.id, 'up')}>
+              <li onClick={this.setRating.bind(this, this.props.obj, 'up')}>
                 <SVGLink name="arrow" />
               </li>
               <li>
                 <b className={ (this.props.obj.rating > 0 && 'positive') || (this.props.obj.rating < 0 && 'negative') }>{this.props.obj.rating}</b>
               </li>
-              <li onClick={this.setRating.bind(this, this.props.obj.id, 'down')}>
+              <li onClick={this.setRating.bind(this, this.props.obj, 'down')}>
                 <SVGLink name="arrow" />
               </li>
             </ul>

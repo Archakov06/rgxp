@@ -15,6 +15,11 @@ export default class Header extends Component {
     }
   }
 
+  getAllPatterns() {
+    document.querySelector('#search-input').value = '';
+    setTimeout(this.props.getPatterns.bind('', ''));
+  }
+
   tagsHandle(tags){
     this.setState({tags: tags});
     document.querySelector('.addForm__group input[id="addform-tags"]').classList = '';
@@ -131,7 +136,7 @@ export default class Header extends Component {
 
         <div className="header">
           <div className="header__logo">
-            <a href="javascript://" onClick={this.props.getPatterns.bind('', '')}><SVGLink name="logo" /></a>
+            <a href="javascript://" onClick={this.getAllPatterns.bind(this)}><SVGLink name="logo" /></a>
           </div>
           <div className="header__right">
 

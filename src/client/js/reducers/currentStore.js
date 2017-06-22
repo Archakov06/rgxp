@@ -41,11 +41,10 @@ const initialState = {
       },
       footer: {
         links: [
-          {label: 'News', url: 'news'},
-          {label: 'Issues', url: 'issues'},
-          {label: 'Contacts', url: 'contacts'},
-          {label: 'GitHub', url: 'gitHub'},
-          {label: 'API', url: 'api'},
+          {label: 'News', url: '#'},
+          {label: 'Issues', url: 'https://github.com/Archakov06/rgxp/issues'},
+          {label: 'Contacts', url: 'https://github.com/Archakov06/rgxp#contacts'},
+          {label: 'GitHub', url: 'https://github.com/Archakov06/rgxp'},
         ]
       },
     },
@@ -87,9 +86,9 @@ const initialState = {
       footer: {
         links: [
           {label: 'Новости', url: '#'},
-          {label: 'Вопросы', url: 'issues'},
-          {label: 'Контакты', url: 'contacts'},
-          {label: 'GitHub', url: 'gitHub'},
+          {label: 'Вопросы', url: 'https://github.com/Archakov06/rgxp/issues'},
+          {label: 'Контакты', url: 'https://github.com/Archakov06/rgxp#contacts'},
+          {label: 'GitHub', url: 'https://github.com/Archakov06/rgxp'},
         ]
       },
     }
