@@ -128,7 +128,7 @@ export default function currentStore(state = initialState, action) {
         filtredPattrens: state.patterns.filter((item) =>
           item.title.toLowerCase().indexOf(val) >= 0 ||
           item.tags.toLowerCase().indexOf(val) >= 0 ||
-          item.description.toLowerCase().indexOf(val) >= 0
+          ( item.description.hasOwnProperty(state.language) && item.description[state.language].toLowerCase().indexOf(val) >= 0 )
         )
       }
     break;
