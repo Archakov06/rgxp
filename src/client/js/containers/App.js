@@ -25,7 +25,7 @@ class App extends Component {
   getPatterns(tag = ''){
     const { setAction } = this.props.appActions;
     const { currentStore } = this.props;
-    this.props.axios.get(`http://594bb8b2ba07670011435299.mockapi.io/patterns${tag ? '?search=' + tag : ''}`)
+    this.props.axios.get(`https://594bb8b2ba07670011435299.mockapi.io/patterns${tag ? '?search=' + tag : ''}`)
     .then(function (response) {
       setAction('SET_PATTERNS', response.data);
       setAction('SET_TAG', tag);
