@@ -66,12 +66,18 @@ export default class Pattern extends Component {
   }
 
   render() {
+
+    let description = '';
+    if (this.props.obj.description) {
+      description = this.props.store.language == 'ru' && this.props.obj.description.hasOwnProperty('ru') ? this.props.obj.description.ru : this.props.obj.description.en;
+    }
+
     return (
       <Block className="pattern-block">
         <div className={`pattern-block__head pattern-block__head--${this.props.obj.tags.split(',').pop()}`}>
           <b>{this.props.obj.title}</b>
           {
-            this.props.obj.description ? <SVGLink className="tippy" title={`${this.props.obj.description ? this.props.obj.description : ''}`} name="info-icon" /> : ''
+           description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''
           }
         </div>
         <div className="pattern-block__content">

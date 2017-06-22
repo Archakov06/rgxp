@@ -71,6 +71,7 @@ class App extends Component {
                     axios={this.props.axios}
                     getPatterns={this.getPatterns.bind(this)}
                     appActions={this.props.appActions}
+                    store={currentStore}
                     key={index}
                     obj={obj}
                   />
