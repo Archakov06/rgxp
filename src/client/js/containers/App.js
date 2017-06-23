@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as appActions from '../actions/appActions';
 
-import Block from '../components/Block';
+import {Block} from '../components/Block';
 import Menu from '../components/Menu';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -23,6 +23,9 @@ class App extends Component {
   }
 
   getPatterns(tag = ''){
+    this.setState({
+      isLoaded: false
+    });
     const { setAction } = this.props.appActions;
     const { currentStore } = this.props;
     this.props.axios.get(`https://594bb8b2ba07670011435299.mockapi.io/patterns${tag ? '?search=' + tag : ''}`)

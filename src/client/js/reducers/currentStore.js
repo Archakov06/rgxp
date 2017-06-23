@@ -104,13 +104,11 @@ export default function currentStore(state = initialState, action) {
         patterns: action.payload,
         filtredPattrens: action.payload
       }
-    break;
     case 'SET_TAG':
       return {
         ...state,
         tag: action.payload
       }
-    break;
     case 'SET_RATING':
       const patterns = state.patterns.filter((item)=>{
         if (item.id == action.payload.id) item.rating = action.payload.status == 'up' ? item.rating + 1 : item.rating - 1;
@@ -120,7 +118,6 @@ export default function currentStore(state = initialState, action) {
         ...state,
         patterns: patterns
       }
-    break;
     case 'SEACH_PATTERNS':
       const val = action.payload.toLowerCase();
       return {
@@ -131,7 +128,6 @@ export default function currentStore(state = initialState, action) {
           ( item.description.hasOwnProperty(state.language) && item.description[state.language].toLowerCase().indexOf(val) >= 0 )
         )
       }
-    break;
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "rgxp",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "Regular Expression Collection",
   "scripts": {
     "start": "node server.js",
     "build": "babel ./src/server -d ./dist && webpack",
@@ -10,29 +10,18 @@
     "build:prod": "NODE_ENV=production webpack --progress --profile --colors",
     "run": "node ./dist/index.js",
     "run-dev": "PORT=3001 DEV=true node dist/index.js",
-    "lint": "eslint src"
+    "lint": "eslint src/client"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/Archakov06/rgxp.git"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Archakov Dennis <hello@archakov.im> (https://github.com/Archakov06)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/Archakov06/rgxp/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://rgxp.ru",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
@@ -42,7 +31,6 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
-    "express": "^4.13.4",
     "react-hot-loader": "^1.3.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
@@ -54,10 +42,8 @@
     "css-loader": "^0.28.0",
     "express": "^4.15.2",
     "express-validator": "^3.2.0",
-    "flexbox-grid-stylus": "^3.2.2",
     "knex": "^0.12.9",
     "mysql": "^2.13.0",
-    "node-sass": "^4.5.2",
     "react": "^0.14.6",
     "react-bootstrap-modal": "^3.0.1",
     "react-dom": "^0.14.6",
@@ -66,8 +52,6 @@
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.3",
     "redux": "^3.6.0",
-    "sass-loader": "^6.0.3",
-    "sqlite3": "^3.1.8",
     "style-loader": "^0.16.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

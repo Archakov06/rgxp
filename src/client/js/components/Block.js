@@ -1,16 +1,9 @@
-import React, { Component, } from 'react';
+import React from 'react';
 
-export default class Block extends Component {
+const Block = ({className, children}) => (
+  <div className={`white-block ${className}`}>
+      {children}
+  </div>
+)
 
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    return (
-      <div className={`white-block ${this.props.className}`}>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+export default Block;

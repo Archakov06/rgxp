@@ -10,7 +10,7 @@ export default class Pattern extends Component {
     super(props);
 
     this.state = {
-      isValid: undefined,
+      isValid: null,
       value: '',
     };
 
@@ -18,14 +18,23 @@ export default class Pattern extends Component {
   }
 
   handleTestChange(){
-    const exp = new RegExp(this.props.obj.pattern);
+    let pattern = this.props.obj.pattern;
+    let flag = pattern.match('\/([gimy]{1,4})$');
+
+    if (flag) {
+      pattern = pattern.slice( 1, pattern.indexOf(flag[0]) );
+      flag = flag[1];
+    }
+
+    const exp = new RegExp(pattern, flag ? flag : '');
+
     this.setState({
       isValid: exp.test(this.testInput.value),
       value: this.testInput.value
     });
   }
 
-  componentWillUpdate(){
+  setTippy(){
     setTimeout(() => new Tippy('.tippy', {
       animation: 'shift',
       theme: 'light',
@@ -33,12 +42,12 @@ export default class Pattern extends Component {
     }));
   }
 
+  componentWillUpdate(){
+    this.setTippy();
+  }
+
   componentWillMount(){
-    setTimeout(() => new Tippy('.tippy', {
-      animation: 'shift',
-      theme: 'light',
-      arrow: true,
-    }));
+    this.setTippy();
   }
 
   setRating(obj, status){
@@ -76,9 +85,7 @@ export default class Pattern extends Component {
       <Block className="pattern-block">
         <div className={`pattern-block__head pattern-block__head--${this.props.obj.tags.split(',').pop()}`}>
           <b>{this.props.obj.title}</b>
-          {
-           description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''
-          }
+          { description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''}
         </div>
         <div className="pattern-block__content">
           <div className="pattern-block__pattern-input">
