@@ -2,7 +2,7 @@ const initialState = {
   patterns: [],
   filtredPattrens: [],
   tag: '',
-  language: window.navigator.userLanguage || window.navigator.language,
+  language: (window.navigator.userLanguage || window.navigator.language) == 'ru' ? 'ru' : 'en',
   languages: {
     en: {
       menu: [
