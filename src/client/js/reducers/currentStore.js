@@ -16,7 +16,7 @@ const initialState = {
       otherMenu: [
         {label: 'HTML', url: 'html'},
         {label: 'CSS', url: 'css'},
-        {label: 'Adress / Phone', url: 'adress-phone'},
+        {label: 'Address / Phone', url: 'adress-phone'},
         {label: 'Markup / Code', url: 'markup-code'},
       ],
       searchPlaceholder: 'Search...',
