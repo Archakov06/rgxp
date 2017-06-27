@@ -15,6 +15,6 @@ const Footer = ({dict}) => (
       }
     </ul>
   </div>
-)
+);
 
 export default Footer;

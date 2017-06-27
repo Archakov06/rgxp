@@ -1,18 +1,18 @@
-import React, { Component, } from 'react';
-import Modal  from 'react-bootstrap-modal';
-
+import React, {Component} from 'react';
 import {SVGLink} from '../components/SVGSprites';
-import Button from '../components/Button';
-import TagInput from '../components/TagInput';
+// import Modal from 'react-bootstrap-modal';
+// import Button from '../components/Button';
+// import TagInput from '../components/TagInput';
+// coming soon...
 
 export default class Header extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       // addModalShow: false,
-      tags: [],
-    }
+      tags: []
+    };
   }
 
   getAllPatterns() {
@@ -20,7 +20,7 @@ export default class Header extends Component {
     setTimeout(this.props.getPatterns.bind('', ''));
   }
 
-  tagsHandle(tags){
+  tagsHandle(tags) {
     this.setState({tags: tags});
     document.querySelector('.addForm__group input[id="addform-tags"]').classList = '';
   }
@@ -62,7 +62,7 @@ export default class Header extends Component {
   //
   // }
 
-  render(){
+  render() {
 
     // modal is coming soon...
     //

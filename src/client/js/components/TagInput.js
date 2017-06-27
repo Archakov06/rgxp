@@ -49,12 +49,12 @@ export default class TagInput extends Component {
     return (
       <div>
         {
-        	this.state.tags.map((item, index) =>
-              <div className="tag">
-                <span>{item}</span>
-                <i onClick={this.removeTag.bind(this, index)}>&times;</i>
-              </div>
-          	)
+          this.state.tags.map((item, index) => {
+            <div className="tag">
+              <span>{item}</span>
+              <i onClick={this.removeTag.bind(this, index)}>&times;</i>
+            </div>
+          })
         }
         <input
           ref={input => this.input = input}

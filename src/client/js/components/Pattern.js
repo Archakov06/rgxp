@@ -11,18 +11,19 @@ export default class Pattern extends Component {
 
     this.state = {
       isValid: null,
-      value: '',
+      value: null,
+      pattern: this.props.obj.pattern,
     };
 
     this.handleTestChange = this.handleTestChange.bind(this);
   }
 
   handleTestChange(){
-    let pattern = this.props.obj.pattern;
+    let pattern = this.state.pattern;
     let flag = pattern.match('\/([gimy]{1,4})$');
 
     if (flag) {
-      pattern = pattern.slice( 1, pattern.indexOf(flag[0]) );
+      pattern = pattern.slice(1, pattern.indexOf(flag[0]));
       flag = flag[1];
     }
 
@@ -74,6 +75,10 @@ export default class Pattern extends Component {
 
   }
 
+  patternChange(event){
+    this.setState({pattern: event.target.value}, this.handleTestChange);
+  }
+
   render() {
 
     let description = '';
@@ -89,7 +94,7 @@ export default class Pattern extends Component {
         </div>
         <div className="pattern-block__content">
           <div className="pattern-block__pattern-input">
-            <input className="gray-input" type="text" readOnly="readonly" value={`${this.props.obj.pattern}`} />
+            <input className="gray-input" type="text" onChange={this.patternChange.bind(this)} defaultValue={`${this.state.pattern}`} />
           </div>
           <div className="pattern-block__pattern-test">
             <div className={`pattern-block__pattern-status ${ (this.state.value && this.state.isValid != undefined) ? (this.state.value && this.state.isValid) ? 'pattern-block__pattern-status--green' : 'pattern-block__pattern-status--red' : '' }`}>
@@ -116,7 +121,7 @@ export default class Pattern extends Component {
                 })
               }
             </ul>
-            <ul className="pattern-block__pattern-vote">
+            <ul style={{ display: 'none' }} className="pattern-block__pattern-vote">
               <li onClick={this.setRating.bind(this, this.props.obj, 'up')}>
                 <SVGLink name="arrow" />
               </li>

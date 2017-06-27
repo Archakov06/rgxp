@@ -3,3 +3,5 @@ npm-debug.log
 yarn.lock
 dist/*
 !dist/bundle.js
+!dist/app.css
+package-lock.json

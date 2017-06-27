@@ -23,15 +23,22 @@ class App extends Component {
   }
 
   getPatterns(tag = ''){
+    const { setAction } = this.props.appActions;
+    const { currentStore } = this.props;
+
+    if (tag) {
+      setAction('SET_TAG', tag);
+      setAction('SEACH_PATTERNS', tag);
+      return;
+    }
+
     this.setState({
       isLoaded: false
     });
-    const { setAction } = this.props.appActions;
-    const { currentStore } = this.props;
-    this.props.axios.get(`https://594bb8b2ba07670011435299.mockapi.io/patterns${tag ? '?search=' + tag : ''}`)
+
+    this.props.axios.get(`patterns.json`)
     .then(function (response) {
       setAction('SET_PATTERNS', response.data);
-      setAction('SET_TAG', tag);
       this.setState({
         isLoaded: true
       });
@@ -49,7 +56,7 @@ class App extends Component {
 
     const { currentStore } = this.props;
     const dict = this.props.currentStore.languages[this.props.currentStore.language];
-    const emoj = ['😔','😞','😣','😑','😕','😶','☹️','🙁','🤷','🤦'];
+    const emoj = ['😔','😞','😣','😑','😕','😶','☹️','🙁'];
 
     return (
       <div>
@@ -98,6 +105,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 function mapStateToProps (state) {
