@@ -327,6 +327,18 @@ body
 				&:hover
 					background-color #eeeefb
 
+			&--matches
+				margin-top 5px
+
+				&:empty
+					display none
+
+				li
+					background-color #fff4f4
+
+					&:hover
+						background-color #fbeeee
+
 		&-author
 			padding-top 20px
 			opacity 0.4
@@ -350,9 +362,7 @@ body
 		&-bottom
 			display flex
 			margin-top 20px
-
-			& > ul:first-child
-				flex 1
+			flex-direction column
 
 		&-vote
 			display flex
@@ -527,9 +537,6 @@ body
 		margin-bottom 4%
 		margin-right 0
 
-	.menu-block ul
-		flex-direction column
-
 	.patterns
 		justify-content space-between
 
@@ -537,6 +544,9 @@ body
 	.pattern-block
 		width 100%
 		margin-bottom 6%
+
+	.menu-block ul
+		flex-direction column
 
 	.footer ul
 		flex-wrap wrap

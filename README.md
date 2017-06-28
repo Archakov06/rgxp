@@ -24,6 +24,78 @@
  - Webpack
  - Stylus
 
+## Как добавить свои регулярные выражения?
+
+Все паттерны содержатся в файле **patterns.json**.
+
+Чтобы добавить свой паттерн, создайте **pull request** соблюдая следующий шаблон:
+
+```json
+{
+  "title": {
+    "en": "Title in english",
+    "ru": "Заголовок на русском"
+  },
+  "description": {
+    "en": "Description in english",
+    "ru": "Описание на русском"
+  },
+  "pattern": "<title>(.*?)</title>",
+  "placeholder": "<title>My site</title>",
+  "tags": "title,html,tags",
+  "nickname": "Archakov06"
+}
+```
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th style="width: 100px;">name</th>
+        <th style="width: 50px;">type</th>
+        <th style="width: 50px;">required</th>
+        <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>title</td>
+      <td>object</td>
+      <td>yes</td>
+      <td>Заголовок. Объект состоящий из двух свойств: **ru** и **en** (string, required).</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>object</td>
+      <td>yes</td>
+      <td>Описание паттерна. Объект состоящий из двух свойств: **ru** и **en** (string, required).</td>
+    </tr>
+    <tr>
+      <td>pattern</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Регулярное выражения (шаблон).</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Подсказка <br>(*в основном, указывается значение соответствующее паттерну*)</td>
+    </tr>
+    <tr>
+      <td>tags</td>
+      <td>string</td>
+      <td>optional</td>
+      <td>Основные тэги вашего паттерна. Указывать через запятую.<br>(*требуется для поиска и категорий*).</td>
+    </tr>
+    <tr>
+      <td>nickname</td>
+      <td>string</td>
+      <td>optional</td>
+      <td>Ваш никнейм от GitHub</td>
+    </tr>
+    </tbody>
+</table>
+
 ## Как оповестить о баге или предложить идею?
 Вы можете создать issue в разделе
 <https://github.com/Archakov06/trycode/issues>. Свяжитесь со мной через GitHub, если у вас есть вопросы, предложения или вы хотите поругать меня за быдлокод. (p.s.: Обратите внимание, что код является качеством beta).

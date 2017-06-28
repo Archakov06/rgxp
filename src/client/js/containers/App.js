@@ -32,11 +32,12 @@ class App extends Component {
       isLoaded: false
     }, () => {
 
+      location.hash = tag ? `search=${tag}` : '';
+
       if (tag) {
         this.setState({isLoaded: true}, () => {
             setAction('SEACH_PATTERNS', tag);
         });
-        location.hash = `search=${tag}`;
         return;
       }
 

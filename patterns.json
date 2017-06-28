@@ -1,56 +1,33 @@
 [
   {
-    "id": "1",
     "title": {
-      "en": "Date in format dd/mm/yyyy",
-      "ru": "Дата в формате dd/mm/yyyy"
+      "en": "Windows directory path",
+      "ru": "Windows путь к директории (файлу)"
     },
     "description": {
-      "en": "Will match dates with dashes, slashes or with spaces (e.g. dd-mm-yyyy dd/mm/yyyy dd mm yyyy), and optional time separated by a space or a dash (e.g. dd-mm-yyyy-hh:mm:ss or dd/mm/yyyy hh:mm:ss).",
-      "ru": "Дата состоящая из: тире, косой черты или пробела (например, dd-mm-yyyy dd / mm / yyyy dd mm yyyy) и необязательное время, разделенное пробелом или тире (например, dd-mm-yyyy-hh: mm: ss Или dd / mm / yyyy hh: mm: ss)."
+      "en": "It takes the path to the file or directory. Works only with Windows paths (C:\\Windows\\system32\\sysconf.exe etc.)",
+      "ru": "Принимает путь к файлу или директории. Работает только с путями Windows (C:\\Windows\\system32\\sysconf.exe и т.д.)"
     },
-    "pattern": "^(0?[1-9]|[12][0-9]|3[01])([ \\/\\-])(0?[1-9]|1[012])\\2([0-9][0-9][0-9][0-9])(([ -])([0-1]?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9])?$",
-    "placeholder": "01/01/1990",
-    "tags": "time,format,dd/mm/yyyy,dd,mm,yy,date-time",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "pattern": "^(([a-zA-Z]:)|(\\\\{2}\\w+)\\$?)(\\\\(\\w[\\w ]*.*))+$",
+    "placeholder": "C:\\Windows\\file.txt",
+    "tags": "windows,path,directory,other",
+    "nickname": null
   },
   {
-    "id": "2",
     "title": {
-      "en": "Time in 24-hour format",
-      "ru": "Время в формате 24 часа"
-    },
-    "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
-    "placeholder": "23:00",
-    "tags": "times,24 hour,format,time,date-time",
-    "nickname": null,
-    "rating": 3,
-    "url_type": null,
-    "approved": 1
-  },
-  {
-    "id": "3",
-    "title": {
-      "en": "Date and time in ISO-8601 format",
-      "ru": "Дата и время в формате ISO-8601"
+      "en": "Matches files extension",
+      "ru": "Расширение файла"
     },
     "description": {
-      "en": "Will match a valid date and times in the ISO-8601 format, excludes durations.",
-      "ru": "Значение должно соответствовать действительной дате и времени в \n формате ISO-8601, исключая длительности."
+      "en": "Checking the file extension. Accepted: file.c, image.jpeg. Allowed filename in which the extension has only letters [a-z].",
+      "ru": "Проверка расширения файла. Принимаются: file.c, image.jpeg. Допускаются расширения только с буквами [a-z]."
     },
-    "pattern": "^(?![+-]?\\d{4,5}-?(?:\\d{2}|W\\d{2})T)(?:|(\\d{4}|[+-]\\d{5})-?(?:|(0\\d|1[0-2])(?:|-?([0-2]\\d|3[0-1]))|([0-2]\\d{2}|3[0-5]\\d|36[0-6])|W([0-4]\\d|5[0-3])(?:|-?([1-7])))(?:(?!\\d)|T(?=\\d)))(?:|([01]\\d|2[0-4])(?:|:?([0-5]\\d)(?:|:?([0-5]\\d)(?:|\\.(\\d{3})))(?:|[zZ]|([+-](?:[01]\\d|2[0-4]))(?:|:?([0-5]\\d)))))$",
-    "placeholder": "2005-08-09",
-    "tags": "iso-8601,format,date,time,times,durations,date-time",
-    "nickname": null,
-    "rating": 1,
-    "url_type": null,
-    "approved": 1
+    "pattern": "(\\.)[a-z]{1,4}$",
+    "placeholder": "myarchive.zip",
+    "tags": "extension,filename,other",
+    "nickname": null
   },
   {
-    "id": "4",
     "title": {
       "en": "HTML tags",
       "ru": "HTML тэги"
@@ -62,13 +39,47 @@
     "pattern": "^<([a-z1-6]+)([^<]+)*(?:>(.*)<\\/\\1>| *\\/>)$",
     "placeholder": "<span>my text</span>",
     "tags": "html,tags,closing,opening,html tag,other",
-    "nickname": null,
-    "rating": -6,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "5",
+    "title": {
+      "en": "Time in 24-hour format",
+      "ru": "Время в формате 24 часа"
+    },
+    "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+    "placeholder": "23:00",
+    "tags": "times,24 hour,format,time,date-time",
+    "nickname": null
+  },
+  {
+    "title": {
+      "en": "Date and time in ISO-8601 format",
+      "ru": "Дата и время в формате ISO-8601"
+    },
+    "description": {
+      "en": "Will match a valid date and times in the ISO-8601 format, excludes durations.",
+      "ru": "Значение должно соответствовать действительной дате и времени в \n формате ISO-8601, исключая длительности."
+    },
+    "pattern": "^(?![+-]?\\d{4,5}-?(?:\\d{2}|W\\d{2})T)(?:|(\\d{4}|[+-]\\d{5})-?(?:|(0\\d|1[0-2])(?:|-?([0-2]\\d|3[0-1]))|([0-2]\\d{2}|3[0-5]\\d|36[0-6])|W([0-4]\\d|5[0-3])(?:|-?([1-7])))(?:(?!\\d)|T(?=\\d)))(?:|([01]\\d|2[0-4])(?:|:?([0-5]\\d)(?:|:?([0-5]\\d)(?:|\\.(\\d{3})))(?:|[zZ]|([+-](?:[01]\\d|2[0-4]))(?:|:?([0-5]\\d)))))$",
+    "placeholder": "2005-08-09",
+    "tags": "iso-8601,format,date,time,times,durations,date-time",
+    "nickname": null
+  },
+  {
+    "title": {
+      "en": "Date in format dd/mm/yyyy",
+      "ru": "Дата в формате dd/mm/yyyy"
+    },
+    "description": {
+      "en": "Will match dates with dashes, slashes or with spaces (e.g. dd-mm-yyyy dd/mm/yyyy dd mm yyyy), and optional time separated by a space or a dash (e.g. dd-mm-yyyy-hh:mm:ss or dd/mm/yyyy hh:mm:ss).",
+      "ru": "Дата состоящая из: тире, косой черты или пробела (например, dd-mm-yyyy dd / mm / yyyy dd mm yyyy) и необязательное время, разделенное пробелом или тире (например, dd-mm-yyyy-hh: mm: ss Или dd / mm / yyyy hh: mm: ss)."
+    },
+    "pattern": "^(0?[1-9]|[12][0-9]|3[01])([ \\/\\-])(0?[1-9]|1[012])\\2([0-9][0-9][0-9][0-9])(([ -])([0-1]?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9])?$",
+    "placeholder": "01/01/1990",
+    "tags": "time,format,dd/mm/yyyy,dd,mm,yy,date-time",
+    "nickname": null
+  },
+  {
     "title": {
       "en": "Username",
       "ru": "Username"
@@ -80,13 +91,9 @@
     "pattern": "^[a-zA-Z0-9_-]{3,16}$",
     "placeholder": "BrendanEich",
     "tags": "characters,username,user,hyphens,underscores,strings",
-    "nickname": null,
-    "rating": 1489,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "6",
     "title": {
       "en": "HEX Color Value",
       "ru": "HEX цвет"
@@ -98,13 +105,9 @@
     "pattern": "^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$",
     "placeholder": "#ffffff",
     "tags": "color,hex,rgb,hex color,other",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "7",
     "title": {
       "en": "E-Mail format",
       "ru": "E-Mail формат"
@@ -116,13 +119,9 @@
       "ru": "Проверка почты на корректность. Обязательное наличие @"
     },
     "tags": "symbol,e-mail,mail,email",
-    "nickname": null,
-    "rating": 1,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "8",
     "title": {
       "en": "SRC of image tag",
       "ru": "SRC of image tag"
@@ -134,13 +133,9 @@
       "ru": "Match the src attribute of an HTML image tag"
     },
     "tags": "html,image,img,html tag,src,attribute,other",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "9",
     "title": {
       "en": "URL with optional protocol",
       "ru": "URL with optional protocol"
@@ -152,13 +147,9 @@
       "ru": "Match URL with optional protocol"
     },
     "tags": "url,protocol,http,link,uri",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "12",
     "title": {
       "en": "IPv4 Address",
       "ru": "IPv4 Address"
@@ -170,13 +161,9 @@
       "ru": "Match IP v4 addresses"
     },
     "tags": "ip,ipv4,adress,ip adress,ip v4,other",
-    "nickname": null,
-    "rating": 1,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "13",
     "title": {
       "en": "IPv6 Address",
       "ru": "IPv6 Address"
@@ -188,13 +175,9 @@
       "ru": "Match IP v6 addresses"
     },
     "tags": "ip,ipv6,ip adress,adress,ip v6,other",
-    "nickname": null,
-    "rating": 5,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "14",
     "title": {
       "en": "Positive number",
       "ru": "Positive number"
@@ -206,13 +189,9 @@
       "ru": "Match integers or floats that are positive"
     },
     "tags": "positive,float,number,integer,numbers",
-    "nickname": null,
-    "rating": 1,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "15",
     "title": {
       "en": "Negative number",
       "ru": "Negative number"
@@ -224,13 +203,9 @@
       "ru": "Match integers or floats that are negative"
     },
     "tags": "negative,float,number,integer,numbers",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "16",
     "title": {
       "en": "Phone number",
       "ru": "Phone number"
@@ -242,13 +217,9 @@
       "ru": "Match phone numbers at least 3 digits long"
     },
     "tags": "phone,digits,phone number,numbers",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "17",
     "title": {
       "en": "ID of Youtube video",
       "ru": "ID of Youtube video"
@@ -260,13 +231,9 @@
       "ru": "Match the ID of a youtube video URL"
     },
     "tags": "youtube,youtube id,video,uri",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "18",
     "title": {
       "en": "ID of Youtube Channel",
       "ru": "ID of Youtube Channel"
@@ -278,13 +245,9 @@
       "ru": "Match the ID of a youtube channel URL"
     },
     "tags": "youtube,youtube channel,youtube channel id,uri",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "19",
     "title": {
       "en": "CSS comment",
       "ru": "CSS comment"
@@ -296,13 +259,9 @@
       "ru": "Match standard CSS comments"
     },
     "tags": "css,comments,standard,other",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "20",
     "title": {
       "en": "U.S./Canadian ZIP/Postal Code",
       "ru": "U.S./Canadian ZIP/Postal Code"
@@ -314,13 +273,9 @@
       "ru": "Matches US ZIP, ZIP+4, and Canadian Postal Codes"
     },
     "tags": "postal code,zip code,zip,code,us,canadian,numbers",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "22",
     "title": {
       "en": "Dollar amounts",
       "ru": "Dollar amounts"
@@ -332,13 +287,9 @@
       "ru": "Dollar amounts, specified with a leading $ symbol."
     },
     "tags": "dollar,amounts,symbol,number,string",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "24",
     "title": {
       "en": "Regular expression for Float value",
       "ru": "Regular expression for Float value"
@@ -350,13 +301,9 @@
       "ru": "This will match any floating point value eg 1.2, 2.009 or .987 but not match 1.00 or 239"
     },
     "tags": "float,point,value,numbers",
-    "nickname": null,
-    "rating": 34,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "25",
     "title": {
       "en": "Domain Name",
       "ru": "Domain Name"
@@ -368,13 +315,9 @@
       "ru": "Regular expression for Domain Name"
     },
     "tags": "domain,name,site,www,strings",
-    "nickname": null,
-    "rating": 1,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   },
   {
-    "id": "26",
     "title": {
       "en": "Password strength",
       "ru": "Password strength"
@@ -386,9 +329,6 @@
       "ru": "Password strength. Example: SGhowk1E"
     },
     "tags": "password,strength,pwd,strings",
-    "nickname": null,
-    "rating": 0,
-    "url_type": null,
-    "approved": 1
+    "nickname": null
   }
 ]

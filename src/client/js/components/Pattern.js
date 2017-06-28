@@ -13,6 +13,7 @@ export default class Pattern extends Component {
       isValid: null,
       value: null,
       pattern: this.props.obj.pattern,
+      matches: [],
     };
 
     this.handleTestChange = this.handleTestChange.bind(this);
@@ -28,10 +29,12 @@ export default class Pattern extends Component {
     }
 
     const exp = new RegExp(pattern, flag ? flag : '');
+    const matches = this.testInput.value.match(exp);
 
     this.setState({
       isValid: exp.test(this.testInput.value),
-      value: this.testInput.value
+      value: this.testInput.value,
+      matches: matches ? matches.filter(e => e) : []
     });
   }
 
@@ -121,11 +124,23 @@ export default class Pattern extends Component {
                 this.props.obj.tags
                 .split(',')
                 .sort((a, b)=>a.length - b.length)
-                .slice(0,3).map((tag, index)=>{
+                .slice(0,3)
+                .map((tag, index)=>{
                   return <li onClick={this.props.getPatterns.bind('', tag)} key={index}>{tag}</li>
                 })
               }
             </ul>
+
+            <ul className="pattern-block__pattern-tags pattern-block__pattern-tags--matches">
+              {
+                this.state.matches
+                .sort((a, b)=>a.length - b.length)
+                .map((match, index)=>{
+                  return <li key={index}>{match}</li>
+                })
+              }
+            </ul>
+
             <ul style={{ display: 'none' }} className="pattern-block__pattern-vote">
               <li onClick={this.setRating.bind(this, this.props.obj, 'up')}>
                 <SVGLink name="arrow" />
@@ -137,6 +152,7 @@ export default class Pattern extends Component {
                 <SVGLink name="arrow" />
               </li>
             </ul>
+
           </div>
         </div>
       </Block>
