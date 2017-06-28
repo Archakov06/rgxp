@@ -15,8 +15,7 @@ export default class Menu extends Component {
   }
 
   search(){
-    const { setAction } = this.props.appActions;
-    setAction('SEACH_PATTERNS', this.searchInput.value);
+    this.props.getPatterns(this.searchInput.value);
   }
 
   render(){

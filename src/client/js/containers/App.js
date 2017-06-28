@@ -26,26 +26,31 @@ class App extends Component {
     const { setAction } = this.props.appActions;
     const { currentStore } = this.props;
 
-    if (tag) {
-      setAction('SET_TAG', tag);
-      setAction('SEACH_PATTERNS', tag);
-      return;
-    }
-
     this.setState({
       isLoaded: false
+    }, () => {
+
+      if (tag) {
+        this.setState({isLoaded: true}, () => {
+            setAction('SET_TAG', tag);
+            setAction('SEACH_PATTERNS', tag);
+        });
+        return;
+      }
+
+      this.props.axios.get(`patterns.json`)
+      .then(function (response) {
+        setAction('SET_PATTERNS', response.data);
+        this.setState({
+          isLoaded: true
+        });
+      }.bind(this))
+      .catch(function (error) {
+        console.error(error);
+      });
+
     });
 
-    this.props.axios.get(`patterns.json`)
-    .then(function (response) {
-      setAction('SET_PATTERNS', response.data);
-      this.setState({
-        isLoaded: true
-      });
-    }.bind(this))
-    .catch(function (error) {
-      console.error(error);
-    });
   }
 
   componentWillMount(){

@@ -123,9 +123,9 @@ export default function currentStore(state = initialState, action) {
       return {
         ...state,
         filtredPattrens: state.patterns.filter((item) =>
-          item.title.toLowerCase().indexOf(val) >= 0 ||
+          ( item.title.hasOwnProperty(state.language) && item.title[state.language].toLowerCase().indexOf(val) >= 0 ) ||
           item.tags.toLowerCase().indexOf(val) >= 0 ||
-          ( item.description.hasOwnProperty(state.language) && item.description[state.language].toLowerCase().indexOf(val) >= 0 )
+          ( item.hasOwnProperty('description') && item.description.hasOwnProperty(state.language) && item.description[state.language].toLowerCase().indexOf(val) >= 0 )
         )
       }
     default:

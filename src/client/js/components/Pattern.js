@@ -81,20 +81,25 @@ export default class Pattern extends Component {
 
   render() {
 
-    let description = '';
+    let description = '', title = '';
+
     if (this.props.obj.description) {
       description = this.props.store.language == 'ru' && this.props.obj.description.hasOwnProperty('ru') ? this.props.obj.description.ru : this.props.obj.description.en;
+    }
+
+    if (this.props.obj.title) {
+      title = this.props.store.language == 'ru' && this.props.obj.title.hasOwnProperty('ru') ? this.props.obj.title.ru : this.props.obj.title.en;
     }
 
     return (
       <Block className="pattern-block">
         <div className={`pattern-block__head pattern-block__head--${this.props.obj.tags.split(',').pop()}`}>
-          <b>{this.props.obj.title}</b>
-          { description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''}
+          <b>{title}</b>
+          {description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''}
         </div>
         <div className="pattern-block__content">
           <div className="pattern-block__pattern-input">
-            <input className="gray-input" type="text" onChange={this.patternChange.bind(this)} defaultValue={`${this.state.pattern}`} />
+            <input className="gray-input" type="text" onChange={this.patternChange.bind(this)} defaultValue={this.state.pattern} value={this.state.pattern} />
           </div>
           <div className="pattern-block__pattern-test">
             <div className={`pattern-block__pattern-status ${ (this.state.value && this.state.isValid != undefined) ? (this.state.value && this.state.isValid) ? 'pattern-block__pattern-status--green' : 'pattern-block__pattern-status--red' : '' }`}>
