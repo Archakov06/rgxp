@@ -26,15 +26,17 @@ class App extends Component {
     const { setAction } = this.props.appActions;
     const { currentStore } = this.props;
 
+    setAction('SET_TAG', tag);
+
     this.setState({
       isLoaded: false
     }, () => {
 
       if (tag) {
         this.setState({isLoaded: true}, () => {
-            setAction('SET_TAG', tag);
             setAction('SEACH_PATTERNS', tag);
         });
+        location.hash = `search=${tag}`;
         return;
       }
 
@@ -55,6 +57,15 @@ class App extends Component {
 
   componentWillMount(){
     this.getPatterns();
+  }
+
+  componentDidMount(){
+    const search = location.hash.split('search=')[1];
+    setTimeout(() => {
+      if (search) {
+        this.getPatterns(search);
+      }
+    });
   }
 
   render() {

@@ -90,10 +90,10 @@ const initialState = {
           {label: 'Контакты', url: 'https://github.com/Archakov06/rgxp#contacts'},
           {label: 'GitHub', url: 'https://github.com/Archakov06/rgxp'},
         ]
-      },
+      }
     }
   }
-}
+};
 
 export default function currentStore(state = initialState, action) {
 
@@ -132,4 +132,4 @@ export default function currentStore(state = initialState, action) {
       return state;
   }
 
-}
+};
