@@ -1,6 +1,20 @@
 [
   {
     "title": {
+      "en": "Valid firstname or lastname",
+      "ru": "Проверка имени или фамилии"
+    },
+    "description": {
+      "en": "Check if the text is a valid firstname or lastname. It allows Characters,'- and space only",
+      "ru": "Проверяет, что вводимый текст является фамилией или именем. Допускаются: ' и -"
+    },
+    "pattern": "^([a-zA-Z '-]+)$",
+    "placeholder": "Amon Bower",
+    "tags": "name,lastname,firstname,characters,validate",
+    "nickname": null
+  },
+  {
+    "title": {
       "en": "Windows directory path",
       "ru": "Windows путь к директории (файлу)"
     },
