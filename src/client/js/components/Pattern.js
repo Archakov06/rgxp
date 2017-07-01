@@ -20,7 +20,7 @@ export default class Pattern extends Component {
   }
 
   handleTestChange(){
-    let pattern = this.state.pattern;
+    let pattern = this.props.obj.pattern;
     let flag = pattern.match('\/([gimy]{1,4})$');
 
     if (flag) {
@@ -102,7 +102,13 @@ export default class Pattern extends Component {
         </div>
         <div className="pattern-block__content">
           <div className="pattern-block__pattern-input">
-            <input className="gray-input" type="text" onChange={this.patternChange.bind(this)} defaultValue={this.state.pattern} value={this.state.pattern} />
+            <input
+              className="gray-input"
+              type="text"
+              readOnly="readOnly"
+              onChange={this.patternChange.bind(this)}
+              value={this.props.obj.pattern}
+            />
           </div>
           <div className="pattern-block__pattern-test">
             <div className={`pattern-block__pattern-status ${ (this.state.value && this.state.isValid != undefined) ? (this.state.value && this.state.isValid) ? 'pattern-block__pattern-status--green' : 'pattern-block__pattern-status--red' : '' }`}>

@@ -28,30 +28,28 @@ class App extends Component {
 
     setAction('SET_TAG', tag);
 
+    location.hash = tag ? `search=${tag}` : '';
+
+    if (tag) {
+      this.setState({isLoaded: true}, () => {
+          setAction('SEACH_PATTERNS', tag);
+      });
+      return;
+    }
+
     this.setState({
       isLoaded: false
-    }, () => {
+    });
 
-      location.hash = tag ? `search=${tag}` : '';
-
-      if (tag) {
-        this.setState({isLoaded: true}, () => {
-            setAction('SEACH_PATTERNS', tag);
-        });
-        return;
-      }
-
-      this.props.axios.get(`patterns.json`)
-      .then(function (response) {
-        setAction('SET_PATTERNS', response.data);
-        this.setState({
-          isLoaded: true
-        });
-      }.bind(this))
-      .catch(function (error) {
-        console.error(error);
+    this.props.axios.get(`patterns.json`)
+    .then(function (response) {
+      setAction('SET_PATTERNS', response.data);
+      this.setState({
+        isLoaded: true
       });
-
+    }.bind(this))
+    .catch(function (error) {
+      console.error(error);
     });
 
   }
