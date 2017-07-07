@@ -113,7 +113,8 @@ export default class Pattern extends Component {
               type='text'
               readOnly='readOnly'
               onChange={this.patternChange.bind(this)}
-              value={obj.pattern}
+              onClick={e => e.target.select()}
+              value={`/${obj.pattern}/`}
             />
           </div>
           <div className='pattern-block__pattern-test'>
