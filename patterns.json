@@ -36,7 +36,7 @@
       "en": "Checking the file extension. Accepted: file.c, image.jpeg. Allowed filename in which the extension has only letters [a-z].",
       "ru": "Проверка расширения файла. Принимаются: file.c, image.jpeg. Допускаются расширения только с буквами [a-z]."
     },
-    "pattern": "(\\.)[a-z]{1,4}$",
+    "pattern": "/(\\.)[a-z]{1,4}$/",
     "placeholder": "myarchive.zip",
     "tags": "extension,filename,other",
     "nickname": null
@@ -238,7 +238,7 @@
       "en": "ID of Youtube video",
       "ru": "ID видео YouTube"
     },
-    "pattern": "^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.?be)\/.+$",
+    "pattern": "/^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.?be)\/.+$/",
     "placeholder": "https://youtube.com/watch?v=edYCtaNueQY",
     "description": {
       "en": "Match the ID of a youtube video URL",
@@ -280,7 +280,7 @@
       "en": "U.S./Canadian ZIP/Postal Code",
       "ru": "Индекс США/Канады"
     },
-    "pattern": "(^\\d{5}(-\\d{4})?$)|(^[A-Z]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)",
+    "pattern": "/(^\\d{5}(-\\d{4})?$)|(^[A-Z]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)/",
     "placeholder": "20151",
     "description": {
       "en": "Matches US ZIP, ZIP+4, and Canadian Postal Codes",
@@ -308,7 +308,7 @@
       "en": "Regular expression for Float value",
       "ru": "Значение с плав. запятой"
     },
-    "pattern": "^[0-9]*.[0-9]*[1-9]+$",
+    "pattern": "/^[0-9]*.[0-9]*[1-9]+$/",
     "placeholder": "1.009 or 239",
     "description": {
       "en": "This will match any floating point value eg 1.2, 2.009 or .987 but not match 1.00 or 239",
