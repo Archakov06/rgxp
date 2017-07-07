@@ -35,6 +35,8 @@ dist/*
 !dist/bundle.js
 !dist/app.css
 package-lock.json
+node_modules/
+npm-debug.log
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
