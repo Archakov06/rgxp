@@ -114,7 +114,7 @@
     },
     "description": {
       "en": "Will match date in format m/d/yyyy or mm/dd/yyyy.",
-      "ru": "Соответствует дате в форметае m/d/yyyy или mm/dd/yyyy"
+      "ru": "Дата в формате m/d/yyyy или mm/dd/yyyy"
     },
     "pattern": "^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$",
     "placeholder": "01/31/2017",
