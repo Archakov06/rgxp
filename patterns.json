@@ -27,9 +27,23 @@
     "tags": "windows,path,directory,other",
     "nickname": null
   },
+  
+    "title": {
+      "en": "Unix directory (file) path",
+      "ru": "Unix путь к директории (файлу)"
+    },
+    "description": {
+      "en": "It takes the path to the file or directory.",
+      "ru": "Принимает путь к файлу или директории."
+    },
+    "pattern": "/([^ !$`&*()+]|(\\[ !$`&*()+]))+/",
+    "placeholder": "/usr/lib/libgccpp.so",
+    "tags": "unix,path,directory,other",
+    "nickname": null
+  },
   {
     "title": {
-      "en": "Matches files extension",
+      "en": "File extension",
       "ru": "Расширение файла"
     },
     "description": {
@@ -57,10 +71,10 @@
   },
   {
     "title": {
-      "en": "Time in 24-hour format",
-      "ru": "Время в формате 24 часа"
+      "en": "Time in 24-hour format. Example: 23:50:00 / 14:00",
+      "ru": "Время в формате 24 часа. Пример: 23:50:00 / 14:00"
     },
-    "pattern": "/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/",
+    "pattern": "/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/g",
     "placeholder": "23:00",
     "tags": "times,24 hour,format,time,date-time",
     "nickname": null
@@ -95,6 +109,20 @@
   },
   {
     "title": {
+      "en": "Date in format m/d/yyyy or mm/dd/yyyy",
+      "ru": "Дата в формате m/d/yyyy или mm/dd/yyyy"
+    },
+    "description": {
+      "en": "Will match date in format m/d/yyyy or mm/dd/yyyy.",
+      "ru": "Соответствует дате в форметае m/d/yyyy или mm/dd/yyyy"
+    },
+    "pattern": "/^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/",
+    "placeholder": "01/31/2017",
+    "tags": "time,format,m/d/yyyy,mm/dd/yyyy,date-time",
+    "nickname": null
+  },
+  {
+    "title": {
       "en": "Username",
       "ru": "Username"
     },
@@ -113,10 +141,10 @@
       "ru": "HEX цвет"
     },
     "description": {
-      "en": "RGB hex colors",
-      "ru": "RGB HEX цвета"
+      "en": "24 or 32 bit colors. Example: #FF006C / 0xF0F73611 / 99AAB7FF",
+      "ru": "24 или 32-битные цвета. Пример: #FF006C / 0xF0F73611 / 99AAB7FF"
     },
-    "pattern": "/^#?([a-f0-9]{6}|[a-f0-9]{3})$/",
+    "pattern": "/(?:#|0x)?(?:[0-9A-Fa-f]{2}){3,4}/",
     "placeholder": "#ffffff",
     "tags": "color,hex,rgb,hex color,other",
     "nickname": null
@@ -126,7 +154,7 @@
       "en": "E-Mail format",
       "ru": "E-Mail формат"
     },
-    "pattern": "/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/",
+    "pattern": "/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm",
     "placeholder": "my@email.com",
     "description": {
       "en": "Checking mail for correctness. Required availability @",
@@ -224,11 +252,11 @@
       "en": "Phone number",
       "ru": "Номер телефона"
     },
-    "pattern": "/^\\+?(\\d.*){3,}$/",
+    "pattern": "^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}\b",
     "placeholder": "+79991234567",
     "description": {
-      "en": "Match phone numbers at least 3 digits long",
-      "ru": "Соответствует тел. номеру длиной >3 символов"
+      "en": "Match phone numbers of russian and american format. Example: +79991234567 / 444-555-1234",
+      "ru": "Соответствует тел. номеру рос. и амер. формата. Пример: +79991234567 / 444-555-1234"
     },
     "tags": "phone,digits,phone number,numbers",
     "nickname": null
@@ -266,7 +294,7 @@
       "en": "CSS comment",
       "ru": "CSS комментарий"
     },
-    "pattern": "\/\*[^*]*\*+([^/*][^*]*\*+)*\/",
+    "pattern": "/(\/\*)(.|\r|\n)*?(\*\/)/g",
     "placeholder": "/* my text */",
     "description": {
       "en": "Match standard CSS comments",
@@ -305,8 +333,8 @@
   },
   {
     "title": {
-      "en": "Regular expression for Float value",
-      "ru": "Значение с плав. запятой"
+      "en": "Float value",
+      "ru": "Нецелые числа"
     },
     "pattern": "/^[0-9]*.[0-9]*[1-9]+$/",
     "placeholder": "1.009 or 239",
@@ -336,13 +364,27 @@
       "en": "Password strength",
       "ru": "Надежность пароля"
     },
-    "pattern": "/^[a-zA-Z0-9_-]\\w{6,18}$/",
+    "pattern": "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm",
     "placeholder": "SGhowk1E",
     "description": {
       "en": "Password strength. Example: SGhowk1E",
       "ru": "Надежность пароля. Пример: SGhowk1E"
     },
     "tags": "password,strength,pwd,strings",
+    "nickname": null
+  },
+  {
+    "title": {
+      "en": "2-5 letters palindromes",
+      "ru": "2-5 буквенные палиндромы"
+    },
+    "pattern": "/\b(\w)?(\w)\w?\2\1/",
+    "placeholder": "noon",
+    "description": {
+      "en": "Palindromes of 2-5 letters. Example: noon / dad",
+      "ru": "Палиндромы из 2-5 букв. Пример: noon / dad"
+    },
+    "tags": "palindromes,strings,other",
     "nickname": null
   }
 ]
