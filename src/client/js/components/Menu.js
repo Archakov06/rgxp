@@ -1,64 +1,75 @@
-import React, { Component, } from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import Block from './Block';
 import {SVGLink} from '../components/SVGSprites';
 
 export default class Menu extends Component {
 
-  constructor(props){
+  static propTypes = {
+    appActions: PropTypes.object.isRequired,
+    getPatterns: PropTypes.func.isRequired
+  };
+
+  constructor(props) {
     super(props);
-    this.navigate = this.navigate.bind(this);
   }
 
-  navigate(tag){
-    this.props.getPatterns(tag);
+  search(tag) {
+    const {getPatterns} = this.props;
+    let val;
+    if (tag) {
+      val = tag;
+    } else {
+      val = this.searchInput.value;
+    }
+    getPatterns(val);
   }
 
-  search(){
-    this.props.getPatterns(this.searchInput.value);
-  }
-
-  render(){
+  render() {
+    const {dict, currentStore} = this.props;
     return (
-      <Block className="menu-block">
+      <Block className='menu-block'>
         <ul>
           {
-            this.props.dict.menu.map((item, index)=>
-              <li
-                key={index}
-                onClick={this.navigate.bind('', item.url)}
-                className={`menu-block__item menu-block__item--${item.url} ${this.props.currentStore.tag == item.url ? 'active' : ''}`}>
-                <a href="javascript://">{item.label}</a>
-              </li>
-            )
+            dict.menu.map((item, index) => {
+              const activeClass = currentStore.tag === item.url ? ' active' : '';
+              return (
+                <li
+                  key={index}
+                  onClick={this.search.bind(this, item.url)}
+                  className={`menu-block__item menu-block__item--${item.url}${activeClass}`}>
+                  <a>{item.label}</a>
+                </li>
+              );
+            })
           }
           <li
             className={`menu-block__item menu-block__item--other`}>
-            <a href="javascript://">{this.props.dict.otherMenuLabel}</a>
+            <a>{dict.otherMenuLabel}</a>
             <ul>
               {
-                this.props.dict.otherMenu.map((item, index)=>
+                dict.otherMenu.map((item, index) => (
                   <li
                     key={index}
-                    onClick={this.navigate.bind('', item.url)}>
-                    <a href="javascript://">{item.label}</a>
+                    onClick={this.search.bind(this, item.url)}>
+                    <a>{item.label}</a>
                   </li>
-                )
+                ))
               }
             </ul>
           </li>
-          <li className="menu-block__item menu-block__item--search">
-            <SVGLink name="search" />
+          <li className='menu-block__item menu-block__item--search'>
+            <SVGLink name='search' />
             <input
-              id="search-input"
-              type="text"
-              ref={(input)=>{ this.searchInput = input }}
+              id='search-input'
+              type='text'
+              ref={input => this.searchInput = input}
               onKeyUp={this.search.bind(this)}
-              placeholder={this.props.dict.searchPlaceholder}
+              placeholder={dict.searchPlaceholder}
             />
           </li>
         </ul>
       </Block>
-    )
+    );
   }
 }

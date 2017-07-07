@@ -1,39 +1,41 @@
-import React, { Component } from 'react';
+import React, {Component, PropTypes} from 'react';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as appActions from '../actions/appActions';
 
-import {Block} from '../components/Block';
 import Menu from '../components/Menu';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Pattern from '../components/Pattern';
-import Button from '../components/Button';
 
-import {SVGLink, SVGSprites} from '../components/SVGSprites';
+import {SVGSprites} from '../components/SVGSprites';
 
 class App extends Component {
 
-  constructor(){
+  static propTypes = {
+    appActions: PropTypes.object.isRequired,
+    axios: PropTypes.func.isRequired,
+    currentStore: PropTypes.object.isRequired
+  };
+
+  constructor() {
     super();
     this.state = {
-      isLoaded: false,
-    }
+      isLoaded: false
+    };
   }
 
-  getPatterns(tag = ''){
-    const { setAction } = this.props.appActions;
-    const { currentStore } = this.props;
+  getPatterns(tag = '') {
+    const {setAction} = this.props.appActions;
+    const {currentStore} = this.props;
 
     setAction('SET_TAG', tag);
 
     location.hash = tag ? `search=${tag}` : '';
 
     if (tag) {
-      this.setState({isLoaded: true}, () => {
-          setAction('SEACH_PATTERNS', tag);
-      });
+      this.setState({isLoaded: true}, () => setAction('SEACH_PATTERNS', tag));
       return;
     }
 
@@ -41,24 +43,21 @@ class App extends Component {
       isLoaded: false
     });
 
-    this.props.axios.get(`patterns.json`)
-    .then(function (response) {
+    this.props.axios.get('patterns.json')
+    .then((response) => {
       setAction('SET_PATTERNS', response.data);
       this.setState({
         isLoaded: true
       });
-    }.bind(this))
-    .catch(function (error) {
-      console.error(error);
-    });
-
+    })
+    .catch((error) => console.error(error));
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.getPatterns();
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const search = location.hash.split('search=')[1];
     setTimeout(() => {
       if (search) {
@@ -68,15 +67,14 @@ class App extends Component {
   }
 
   render() {
-
-    const { currentStore } = this.props;
-    const dict = this.props.currentStore.languages[this.props.currentStore.language];
-    const emoj = ['😔','😞','😣','😑','😕','😶','☹️','🙁'];
+    const {currentStore} = this.props;
+    const dict = currentStore.languages[currentStore.language];
+    const emoj = ['😔', '😞', '😣', '😑', '😕', '😶', '☹️', '🙁'];
 
     return (
       <div>
         <SVGSprites />
-        <div className="container">
+        <div className='container'>
           <Header
             axios={this.props.axios}
             getPatterns={this.getPatterns.bind(this)}
@@ -88,28 +86,26 @@ class App extends Component {
             appActions={this.props.appActions}
             dict={dict}
           />
-          <div className="patterns">
+          <div className='patterns'>
             {
-              currentStore.filtredPattrens.length && this.state.isLoaded ? currentStore.filtredPattrens.map((obj, index)=>{
-                return (
-                  <Pattern
-                    axios={this.props.axios}
-                    getPatterns={this.getPatterns.bind(this)}
-                    appActions={this.props.appActions}
-                    store={currentStore}
-                    key={index}
-                    obj={obj}
-                  />
-                )
-              }) :
+              currentStore.filtredPattrens.length && this.state.isLoaded ? currentStore.filtredPattrens.map((obj, index) => (
+                <Pattern
+                  axios={this.props.axios}
+                  getPatterns={this.getPatterns.bind(this)}
+                  appActions={this.props.appActions}
+                  store={currentStore}
+                  key={index}
+                  obj={obj}
+                />
+              )) :
               (
               this.state.isLoaded ?
-                <div className="patterns__no-result">
+                <div className='patterns__no-result'>
                   <h2>{dict.searchResult.notFoundTitle} { emoj[Math.floor(Math.random() * emoj.length)] }</h2>
                   <p>{dict.searchResult.notFoundText}</p>
                 </div>
               :
-                <div className="patterns__no-result">
+                <div className='patterns__no-result'>
                   <p>{dict.loadingLabel}</p>
                 </div>
               )
@@ -120,19 +116,18 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
     currentStore: state.currentStore
-  }
-}
+  };
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     appActions: bindActionCreators(appActions, dispatch)
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

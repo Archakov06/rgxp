@@ -4,14 +4,14 @@ export default class TagInput extends Component {
 
   static defaultProps = {
     placeholder: 'Enter your tag...',
-  }
+  };
 
   static propTypes = {
     placeholder: React.PropTypes.string,
     id: React.PropTypes.string,
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
-  }
+  };
 
   constructor(props){
     super(props);
@@ -19,7 +19,7 @@ export default class TagInput extends Component {
     this.onKeyDownHandle = this.onKeyDownHandle.bind(this);
     this.state = {
       tags: []
-    }
+    };
   }
 
   onKeyUpHandle(event){
@@ -45,7 +45,6 @@ export default class TagInput extends Component {
   }
 
   render() {
-
     return (
       <div>
         {
@@ -67,7 +66,6 @@ export default class TagInput extends Component {
         />
       </div>
     )
-
   }
 
 }

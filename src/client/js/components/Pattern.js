@@ -1,10 +1,18 @@
-import React, { Component, } from 'react';
+import React, {Component, PropTypes} from 'react';
 import Block from './Block';
 import {SVGLink} from '../components/SVGSprites';
 
 import Tippy from 'tippy.js/dist/tippy.js';
 
 export default class Pattern extends Component {
+
+  static propTypes = {
+    obj: PropTypes.object.isRequired,
+    appActions: PropTypes.object.isRequired,
+    axios: PropTypes.func.isRequired,
+    store: PropTypes.object.isRequired,
+    getPatterns: PropTypes.func.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -13,14 +21,14 @@ export default class Pattern extends Component {
       isValid: null,
       value: null,
       pattern: this.props.obj.pattern,
-      matches: [],
+      matches: []
     };
 
     this.handleTestChange = this.handleTestChange.bind(this);
   }
 
-  handleTestChange(){
-    let pattern = this.props.obj.pattern;
+  handleTestChange() {
+    let {pattern} = this.props.obj;
     let flag = pattern.match('\/([gimy]{1,4})$');
 
     if (flag) {
@@ -38,124 +46,122 @@ export default class Pattern extends Component {
     });
   }
 
-  setTippy(){
+  setTippy() {
     setTimeout(() => new Tippy('.tippy', {
       animation: 'shift',
       theme: 'light',
-      arrow: true,
+      arrow: true
     }));
   }
 
-  componentWillUpdate(){
+  componentWillUpdate() {
     this.setTippy();
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.setTippy();
   }
 
-  setRating(obj, status){
-    const { setAction } = this.props.appActions;
-
-    const rating = status == 'down' ? parseInt(obj.rating) - 1 : parseInt(obj.rating) + 1;
-
+  setRating(obj, status) {
+    const {setAction} = this.props.appActions;
+    const rating = status === 'down' ? (parseInt(obj.rating) - 1) : (parseInt(obj.rating) + 1);
     this.props.axios({
       method: 'PUT',
       url: `https://594bb8b2ba07670011435299.mockapi.io/patterns/${obj.id}`,
       data: {
         rating: rating
       }
-    }).then(function (response) {
+    }).then((response) => {
       if (response.data.hasOwnProperty('id')) {
         setAction('SET_RATING', {
           id: obj.id,
           status: status
         });
       }
-    }).catch(function (error) {
-      console.error(error);
-    });
-
+    }).catch((error) => console.error(error));
   }
 
-  patternChange(event){
+  patternChange(event) {
     this.setState({pattern: event.target.value}, this.handleTestChange);
   }
 
   render() {
+    let description = '';
+    let title = '';
+    const {store, obj, getPatterns} = this.props;
 
-    let description = '', title = '';
-
-    if (this.props.obj.description) {
-      description = this.props.store.language == 'ru' && this.props.obj.description.hasOwnProperty('ru') ? this.props.obj.description.ru : this.props.obj.description.en;
+    if (obj.description) {
+      description = store.language === 'ru' && obj.description.hasOwnProperty('ru') ?
+      obj.description.ru : obj.description.en;
     }
 
-    if (this.props.obj.title) {
-      title = this.props.store.language == 'ru' && this.props.obj.title.hasOwnProperty('ru') ? this.props.obj.title.ru : this.props.obj.title.en;
+    if (obj.title) {
+      title = this.props.store.language === 'ru' && obj.title.hasOwnProperty('ru') ?
+      obj.title.ru : obj.title.en;
     }
 
     return (
-      <Block className="pattern-block">
-        <div className={`pattern-block__head pattern-block__head--${this.props.obj.tags.split(',').pop()}`}>
+      <Block className='pattern-block'>
+        <div className={`pattern-block__head pattern-block__head--${obj.tags.split(',').pop()}`}>
           <b>{title}</b>
-          {description ? <SVGLink className="tippy" title={`${description}`} name="info-icon" /> : ''}
+          {description ? <SVGLink className='tippy' title={description} name='info-icon' /> : ''}
         </div>
-        <div className="pattern-block__content">
-          <div className="pattern-block__pattern-input">
+        <div className='pattern-block__content'>
+          <div className='pattern-block__pattern-input'>
             <input
-              className="gray-input"
-              type="text"
-              readOnly="readOnly"
+              className='gray-input'
+              type='text'
+              readOnly='readOnly'
               onChange={this.patternChange.bind(this)}
-              value={this.props.obj.pattern}
+              value={obj.pattern}
             />
           </div>
-          <div className="pattern-block__pattern-test">
-            <div className={`pattern-block__pattern-status ${ (this.state.value && this.state.isValid != undefined) ? (this.state.value && this.state.isValid) ? 'pattern-block__pattern-status--green' : 'pattern-block__pattern-status--red' : '' }`}>
-              <SVGLink name="complete-icon" />
-              <SVGLink name="error-icon" />
+          <div className='pattern-block__pattern-test'>
+            <div className={`pattern-block__pattern-status ${ (this.state.value && typeof this.state.isValid != 'undefined') ? (this.state.value && this.state.isValid) ? 'pattern-block__pattern-status--green' : 'pattern-block__pattern-status--red' : '' }`}>
+              <SVGLink name='complete-icon' />
+              <SVGLink name='error-icon' />
             </div>
             <input
-              ref={(input)=>{ this.testInput = input; }}
+              ref={input => this.testInput = input}
               onChange={this.handleTestChange}
-              type="text"
-              className={`${ (this.state.value && this.state.isValid != undefined) ? 'has-status' : '' }`}
-              defaultValue={`${this.props.obj.defaultValue ? this.props.obj.defaultValue : ''}`}
-              placeholder={`${this.props.obj.placeholder ? this.props.obj.placeholder : ''}`}
+              type='text'
+              className={this.state.value && typeof this.state.isValid != 'undefined' ? 'has-status' : ''}
+              defaultValue={`${obj.defaultValue ? obj.defaultValue : ''}`}
+              placeholder={`${obj.placeholder ? obj.placeholder : ''}`}
             />
           </div>
-          <div className="pattern-block__pattern-bottom">
-            <ul className="pattern-block__pattern-tags">
+          <div className='pattern-block__pattern-bottom'>
+            <ul className='pattern-block__pattern-tags'>
               {
-                this.props.obj.tags
+                obj.tags
                 .split(',')
                 .sort((a, b)=>a.length - b.length)
-                .slice(0,3)
+                .slice(0, 3)
                 .map((tag, index)=>{
-                  return <li onClick={this.props.getPatterns.bind('', tag)} key={index}>{tag}</li>
+                  return <li onClick={getPatterns.bind('', tag)} key={index}>{tag}</li>
                 })
               }
             </ul>
 
-            <ul className="pattern-block__pattern-tags pattern-block__pattern-tags--matches">
+            <ul className='pattern-block__pattern-tags pattern-block__pattern-tags--matches'>
               {
                 this.state.matches
                 .sort((a, b)=>a.length - b.length)
-                .map((match, index)=>{
+                .map((match, index) => {
                   return <li key={index}>{match}</li>
                 })
               }
             </ul>
 
-            <ul style={{ display: 'none' }} className="pattern-block__pattern-vote">
-              <li onClick={this.setRating.bind(this, this.props.obj, 'up')}>
-                <SVGLink name="arrow" />
+            <ul style={{ display: 'none' }} className='pattern-block__pattern-vote'>
+              <li onClick={this.setRating.bind(this, obj, 'up')}>
+                <SVGLink name='arrow' />
               </li>
               <li>
-                <b className={ (this.props.obj.rating > 0 && 'positive') || (this.props.obj.rating < 0 && 'negative') }>{this.props.obj.rating}</b>
+                <b className={ (obj.rating > 0 && 'positive') || (obj.rating < 0 && 'negative') }>{obj.rating}</b>
               </li>
-              <li onClick={this.setRating.bind(this, this.props.obj, 'down')}>
-                <SVGLink name="arrow" />
+              <li onClick={this.setRating.bind(this, obj, 'down')}>
+                <SVGLink name='arrow' />
               </li>
             </ul>
 
