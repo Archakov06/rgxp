@@ -15,7 +15,7 @@
   },
   {
     "title": {
-      "en": "Windows directory path",
+      "en": "Windows directory (file) path",
       "ru": "Windows путь к директории (файлу)"
     },
     "description": {
