@@ -27,9 +27,23 @@
     "tags": "windows,path,directory,other",
     "nickname": null
   },
+  }
+    "title": {
+      "en": "Unix directory (file) path",
+      "ru": "Unix путь к директории (файлу)"
+    },
+    "description": {
+      "en": "It takes the path to the file or directory.",
+      "ru": "Принимает путь к файлу или директории."
+    },
+    "pattern": "([^ !$`&*()+]|(\\[ !$`&*()+]))+",
+    "placeholder": "/usr/lib/libgccpp.so",
+    "tags": "unix,path,directory,other",
+    "nickname": null
+  },
   {
     "title": {
-      "en": "Matches files extension",
+      "en": "File extension",
       "ru": "Расширение файла"
     },
     "description": {
@@ -41,6 +55,7 @@
     "tags": "extension,filename,other",
     "nickname": null
   },
+ 
   {
     "title": {
       "en": "HTML tags",
@@ -50,17 +65,17 @@
       "en": "Match opening and closing HTML tags with content between",
       "ru": "Выражение для проверки открывающихся и закрывающихся HTML-тегов с каким-нибудь содержимым"
     },
-    "pattern": "^<([a-z1-6]+)([^<]+)*(?:>(.*)<\\/\\1>| *\\/>)$",
+    "pattern": "^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$",
     "placeholder": "<span>my text</span>",
     "tags": "html,tags,closing,opening,html tag,other",
     "nickname": null
   },
   {
     "title": {
-      "en": "Time in 24-hour format",
-      "ru": "Время в формате 24 часа"
+      "en": "Time in 24-hour format. Example: 23:50:00 / 14:00",
+      "ru": "Время в формате 24 часа. Пример: 23:50:00 / 14:00"
     },
-    "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+    "pattern": "/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/g",
     "placeholder": "23:00",
     "tags": "times,24 hour,format,time,date-time",
     "nickname": null
@@ -95,6 +110,20 @@
   },
   {
     "title": {
+      "en": "Date in format m/d/yyyy or mm/dd/yyyy",
+      "ru": "Дата в формате m/d/yyyy или mm/dd/yyyy"
+    },
+    "description": {
+      "en": "Will match date in format m/d/yyyy or mm/dd/yyyy.",
+      "ru": "Соответствует дате в форметае m/d/yyyy или mm/dd/yyyy"
+    },
+    "pattern": "^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$",
+    "placeholder": "01/31/2017",
+    "tags": "time,format,m/d/yyyy,mm/dd/yyyy,date-time",
+    "nickname": null
+  },
+  {
+    "title": {
       "en": "Username",
       "ru": "Username"
     },
@@ -109,14 +138,14 @@
   },
   {
     "title": {
-      "en": "HEX Color Value",
-      "ru": "HEX цвет"
+      "en": "24 or 32-bit Color Value",
+      "ru": "24 or 32-битные цвета"
     },
     "description": {
-      "en": "RGB hex colors",
-      "ru": "RGB HEX цвета"
+      "en": "24 or 32 bit colors. Example: #FF006C / 0xF0F73611 / 99AAB7FF",
+      "ru": "24 или 32-битные цвета. Пример: #FF006C / 0xF0F73611 / 99AAB7FF"
     },
-    "pattern": "^#?([a-f0-9]{6}|[a-f0-9]{3})$",
+    "pattern": "(?:#|0x)?(?:[0-9A-Fa-f]{2}){3,4}",
     "placeholder": "#ffffff",
     "tags": "color,hex,rgb,hex color,other",
     "nickname": null
@@ -126,7 +155,7 @@
       "en": "E-Mail format",
       "ru": "E-Mail формат"
     },
-    "pattern": "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i",
+    "pattern": "/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm",
     "placeholder": "my@email.com",
     "description": {
       "en": "Checking mail for correctness. Required availability @",
@@ -138,7 +167,7 @@
   {
     "title": {
       "en": "SRC of image tag",
-      "ru": "<img src=\"\"> тэг"
+      "ru": "<img src=""> тэг"
     },
     "pattern": "^<\\s*img[^>]+src\\s*=\\s*([\"'])(.*?)\\1[^>]*>$",
     "placeholder": "<img src=\"cat.jpg\">",
@@ -224,11 +253,11 @@
       "en": "Phone number",
       "ru": "Номер телефона"
     },
-    "pattern": "^\\+?(\\d.*){3,}$",
+    "pattern": "^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}\b",
     "placeholder": "+79991234567",
     "description": {
-      "en": "Match phone numbers at least 3 digits long",
-      "ru": "Соответствует тел. номеру длиной >3 символов"
+      "en": "Match phone numbers of russian and american format. Example: +79991234567 / 444-555-1234",
+      "ru": "Соответствует тел. номеру рос. и амер. формата. Пример: +79991234567 / 444-555-1234"
     },
     "tags": "phone,digits,phone number,numbers",
     "nickname": null
@@ -238,7 +267,7 @@
       "en": "ID of Youtube video",
       "ru": "ID видео YouTube"
     },
-    "pattern": "/https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}).*/gi",
+    "pattern": "^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.?be)\/.+$",
     "placeholder": "https://youtube.com/watch?v=edYCtaNueQY",
     "description": {
       "en": "Match the ID of a youtube video URL",
@@ -266,8 +295,8 @@
       "en": "CSS comment",
       "ru": "CSS комментарий"
     },
-    "pattern": "\\/\\*[^*]*\\*+([^\\/*][^*]*\\*+)*\\/",
-    "placeholder": "* my text *",
+    "pattern": "/(\/\*)(.|\r|\n)*?(\*\/)/g",
+    "placeholder": "/* my text */",
     "description": {
       "en": "Match standard CSS comments",
       "ru": "Соответствует CSS комментарию"
@@ -305,7 +334,7 @@
   },
   {
     "title": {
-      "en": "Regular expression for Float value",
+      "en": "Float value",
       "ru": "Значение с плав. запятой"
     },
     "pattern": "^[0-9]*.[0-9]*[1-9]+$",
@@ -336,13 +365,27 @@
       "en": "Password strength",
       "ru": "Надежность пароля"
     },
-    "pattern": "^[a-zA-Z0-9_-]\\w{6,18}$",
+    "pattern": "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm",
     "placeholder": "SGhowk1E",
     "description": {
       "en": "Password strength. Example: SGhowk1E",
       "ru": "Надежность пароля. Пример: SGhowk1E"
     },
     "tags": "password,strength,pwd,strings",
+    "nickname": null
+  },
+  {
+    "title": {
+      "en": "2-5 letters palindromes",
+      "ru": "2-5 буквенные палиндромы"
+    },
+    "pattern": "/\b(\w)?(\w)\w?\2\1/",
+    "placeholder": "noon",
+    "description": {
+      "en": "Palindromes of 2-5 letters. Example: noon / dad",
+      "ru": "Палиндромы из 2-5 букв. Пример: noon / dad"
+    },
+    "tags": "palindromes,strings,other",
     "nickname": null
   }
 ]
