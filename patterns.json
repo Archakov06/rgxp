@@ -364,7 +364,7 @@
       "en": "Domain name",
       "ru": "Имя домена"
     },
-    "pattern": "^[a-z0-9]+[a-z0-9-.]*[a-z0-9]+.[a-z.]{2,5}$",
+    "pattern": "/(?!w{1,}\.)(\w+\.?)([a-zA-Z]+)(\.\w+)/g",
     "placeholder": "site.com",
     "description": {
       "en": "Matches domain name",
