@@ -138,4 +138,4 @@
 
 ## License
 
-MIT License - Archakov Dennis 2017
+MIT License - Archakov Denis 2017

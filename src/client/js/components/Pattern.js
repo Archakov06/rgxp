@@ -88,6 +88,7 @@ export default class Pattern extends Component {
   render() {
     let description = '';
     let title = '';
+    let pattern = '';
     const {store, obj, getPatterns} = this.props;
 
     if (obj.description) {
@@ -98,6 +99,12 @@ export default class Pattern extends Component {
     if (obj.title) {
       title = this.props.store.language === 'ru' && obj.title.hasOwnProperty('ru') ?
       obj.title.ru : obj.title.en;
+    }
+
+    if (obj.pattern[0] == '/') {
+      pattern = obj.pattern;
+    } else {
+      pattern = `/${obj.pattern}/`;
     }
 
     return (
@@ -114,7 +121,7 @@ export default class Pattern extends Component {
               readOnly='readOnly'
               onChange={this.patternChange.bind(this)}
               onClick={e => e.target.select()}
-              value={`/${obj.pattern}/`}
+              value={pattern}
             />
           </div>
           <div className='pattern-block__pattern-test'>
