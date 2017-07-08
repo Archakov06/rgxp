@@ -1,21 +1,21 @@
 [
   {
     "title": {
-      "en": "Valid firstname or lastname",
+      "en": "Firstname / lastname validation",
       "ru": "Проверка имени или фамилии"
     },
     "description": {
       "en": "Check if the text is a valid firstname or lastname. It allows Characters,'- and space only",
       "ru": "Проверяет, что вводимый текст является фамилией или именем. Допускаются: ' и -"
     },
-    "pattern": "^([a-zA-Z '-]+)$",
+    "pattern": "/(-?([A-Z].\s)?([A-Z][a-z]+)\s?)+([A-Z]'([A-Z][a-z]+))?/g",
     "placeholder": "Amon Bower",
     "tags": "name,lastname,firstname,characters,validate",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
-      "en": "Windows directory path",
+      "en": "Windows directory (file) path",
       "ru": "Windows путь к директории (файлу)"
     },
     "description": {
@@ -25,11 +25,25 @@
     "pattern": "^(([a-zA-Z]:)|(\\\\{2}\\w+)\\$?)(\\\\(\\w[\\w ]*.*))+$",
     "placeholder": "C:\\Windows\\file.txt",
     "tags": "windows,path,directory,other",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
-      "en": "Matches files extension",
+      "en": "Unix directory (file) path",
+      "ru": "Unix путь к директории (файлу)"
+    },
+    "description": {
+      "en": "It takes the path to the file or directory. Works only with Unix-like paths",
+      "ru": "Принимает путь к файлу или директории. Работает только с путями Unix вида"
+    },
+    "pattern": "([^ !$`&*()+]|(\\[ !$`&*()+]))+",
+    "placeholder": "/usr/lib/libgccpp.so",
+    "tags": "unix,path,directory,other",
+    "nickname": "@limitedeternity"
+  },
+  {
+    "title": {
+      "en": "File extension",
       "ru": "Расширение файла"
     },
     "description": {
@@ -39,7 +53,7 @@
     "pattern": "(\\.)[a-z]{1,4}$",
     "placeholder": "myarchive.zip",
     "tags": "extension,filename,other",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -47,23 +61,23 @@
       "ru": "HTML тэги"
     },
     "description": {
-      "en": "Match opening and closing HTML tags with content between",
-      "ru": "Выражение для проверки открывающихся и закрывающихся HTML-тегов с каким-нибудь содержимым"
+      "en": "Match content between opening and closing HTML tags",
+      "ru": "Cоответствует содержимому между HTML тэгами"
     },
-    "pattern": "^<([a-z1-6]+)([^<]+)*(?:>(.*)<\\/\\1>| *\\/>)$",
+    "pattern": "/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g",
     "placeholder": "<span>my text</span>",
     "tags": "html,tags,closing,opening,html tag,other",
-    "nickname": null
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
-      "en": "Time in 24-hour format",
-      "ru": "Время в формате 24 часа"
+      "en": "Time in 24-hour format. Example: 23:50:00 / 14:00",
+      "ru": "Время 24-х часовом формате. Пример: 23:50:00 / 14:00"
     },
-    "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+    "pattern": "/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/g",
     "placeholder": "23:00",
     "tags": "times,24 hour,format,time,date-time",
-    "nickname": null
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
@@ -77,7 +91,7 @@
     "pattern": "^(?![+-]?\\d{4,5}-?(?:\\d{2}|W\\d{2})T)(?:|(\\d{4}|[+-]\\d{5})-?(?:|(0\\d|1[0-2])(?:|-?([0-2]\\d|3[0-1]))|([0-2]\\d{2}|3[0-5]\\d|36[0-6])|W([0-4]\\d|5[0-3])(?:|-?([1-7])))(?:(?!\\d)|T(?=\\d)))(?:|([01]\\d|2[0-4])(?:|:?([0-5]\\d)(?:|:?([0-5]\\d)(?:|\\.(\\d{3})))(?:|[zZ]|([+-](?:[01]\\d|2[0-4]))(?:|:?([0-5]\\d)))))$",
     "placeholder": "2005-08-09",
     "tags": "iso-8601,format,date,time,times,durations,date-time",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -91,12 +105,26 @@
     "pattern": "^(0?[1-9]|[12][0-9]|3[01])([ \\/\\-])(0?[1-9]|1[012])\\2([0-9][0-9][0-9][0-9])(([ -])([0-1]?[0-9]|2[0-3]):[0-5]?[0-9]:[0-5]?[0-9])?$",
     "placeholder": "01/01/1990",
     "tags": "time,format,dd/mm/yyyy,dd,mm,yy,date-time",
-    "nickname": null
+    "nickname": "@Archakov06"
+  },
+  {
+    "title": {
+      "en": "Date in format m/d/yyyy or mm/dd/yyyy",
+      "ru": "Дата в формате m/d/yyyy или mm/dd/yyyy"
+    },
+    "description": {
+      "en": "Will match date in format m/d/yyyy or mm/dd/yyyy.",
+      "ru": "Дата в формате m/d/yyyy или mm/dd/yyyy"
+    },
+    "pattern": "^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$",
+    "placeholder": "01/31/2017",
+    "tags": "time,format,m/d/yyyy,mm/dd/yyyy,date-time",
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
       "en": "Username",
-      "ru": "Username"
+      "ru": "Никнейм"
     },
     "description": {
       "en": "A string between 3 and 16 characters, allowing alphanumeric characters and hyphens and underscores",
@@ -104,50 +132,64 @@
     },
     "pattern": "^[a-zA-Z0-9_-]{3,16}$",
     "placeholder": "BrendanEich",
-    "tags": "characters,username,user,hyphens,underscores,strings",
-    "nickname": null
+    "tags": "characters,username,user,strings",
+    "nickname": "@Archakov06"
   },
   {
     "title": {
-      "en": "HEX Color Value",
-      "ru": "HEX цвет"
+      "en": "24 or 32-bit Color",
+      "ru": "24 или 32-битные цвета"
     },
     "description": {
-      "en": "RGB hex colors",
-      "ru": "RGB HEX цвета"
+      "en": "24 or 32 bit colors. Example: #FF006C / 0xF0F73611 / 99AAB7FF",
+      "ru": "24 или 32-битные цвета. Пример: #FF006C / 0xF0F73611 / 99AAB7FF"
     },
-    "pattern": "^#?([a-f0-9]{6}|[a-f0-9]{3})$",
+    "pattern": "(?:#|0x)?(?:[0-9A-Fa-f]{2}){3,4}",
     "placeholder": "#ffffff",
     "tags": "color,hex,rgb,hex color,other",
-    "nickname": null
+    "nickname": "@limitedeternity"
+  },
+  {
+    "title": {
+      "en": "RGB Value",
+      "ru": "RGB значения"
+    },
+    "description": {
+      "en": "RGB color strings. Example: rgb(255,255,255)",
+      "ru": "Строки, соответствующие RGB формату. Пример: rgb(255,255,255)"
+    },
+    "pattern": "/rgb\((?:([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5]), ?)(?:([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5]), ?)(?:([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5]))\)/g",
+    "placeholder": "#ffffff",
+    "tags": "color,rgb,strings,other",
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
       "en": "E-Mail format",
       "ru": "E-Mail формат"
     },
-    "pattern": "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i",
+    "pattern": "/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm",
     "placeholder": "my@email.com",
     "description": {
-      "en": "Checking mail for correctness. Required availability @",
-      "ru": "Проверка почты на корректность. Обязательное наличие @"
+      "en": "Checking mail for correctness.",
+      "ru": "Проверка почты на корректность."
     },
     "tags": "symbol,e-mail,mail,email",
-    "nickname": null
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
       "en": "SRC of image tag",
-      "ru": "<img src=\"\"> тэг"
+      "ru": "&lt;img src=&quot;&quot;&gt; тэг"
     },
     "pattern": "^<\\s*img[^>]+src\\s*=\\s*([\"'])(.*?)\\1[^>]*>$",
-    "placeholder": "<img src=\"cat.jpg\">",
+    "placeholder": "&lt;img src=&quot;cat.jpg&quot;&gt;",
     "description": {
       "en": "Match the src attribute of an HTML image tag",
       "ru": "Соответствует src аттрибуту <img>."
     },
     "tags": "html,image,img,html tag,src,attribute,other",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -161,21 +203,21 @@
       "ru": "Соответствует URL с протоколом"
     },
     "tags": "url,protocol,http,link,uri",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
       "en": "IPv4 Address",
       "ru": "IPv4 адрес"
     },
-    "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+    "pattern": "/\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/ig",
     "placeholder": "192.168.0.1",
     "description": {
-      "en": "Match IP v4 addresses",
+      "en": "Match IPv4 addresses",
       "ru": "Соответствует IPv4 адресу"
     },
-    "tags": "ip,ipv4,adress,ip adress,ip v4,other",
-    "nickname": null
+    "tags": "ip,ipv4,adress,ip adress,other",
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -188,8 +230,8 @@
       "en": "Match IPv6 addresses",
       "ru": "Соответствует IPv6 адресу"
     },
-    "tags": "ip,ipv6,ip adress,adress,ip v6,other",
-    "nickname": null
+    "tags": "ip,ipv6,ip adress,adress,other",
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -200,10 +242,10 @@
     "placeholder": "Any positive number",
     "description": {
       "en": "Match integers or floats that are positive",
-      "ru": "Соответствует положительным целым или нецелым значениям"
+      "ru": "Соответствует положительным значениям"
     },
     "tags": "positive,float,number,integer,numbers",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -217,63 +259,63 @@
       "ru": "Соответствует отрицательным значениям"
     },
     "tags": "negative,float,number,integer,numbers",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
       "en": "Phone number",
       "ru": "Номер телефона"
     },
-    "pattern": "^\\+?(\\d.*){3,}$",
+    "pattern": "^((\+7|7|8)+([0-9]){10})$|\b\d{3}[-.]?\d{3}[-.]?\d{4}\b",
     "placeholder": "+79991234567",
     "description": {
-      "en": "Match phone numbers at least 3 digits long",
-      "ru": "Соответствует тел. номеру длиной >3 символов"
+      "en": "Match phone numbers of russian and american format. Example: +79991234567 / 444-555-1234",
+      "ru": "Соответствует тел. номеру рос. и амер. формата. Пример: +79991234567 / 444-555-1234"
     },
     "tags": "phone,digits,phone number,numbers",
-    "nickname": null
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
-      "en": "ID of Youtube video",
-      "ru": "ID видео YouTube"
+      "en": "Youtube URL",
+      "ru": "YouTube URL"
     },
-    "pattern": "/https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}).*/gi",
+    "pattern": "/(?:https?:\/\/)?(?:(?:(?:www\.?)?youtube\.com(?:\/(?:(?:watch\?.*?(v=[^&\s]+).*)|(?:v(\/.*))|(channel\/.+)|(?:user\/(.+))|(?:results\?(search_query=.+))))?)|(?:youtu\.be(\/.*)?))/g",
     "placeholder": "https://youtube.com/watch?v=edYCtaNueQY",
     "description": {
-      "en": "Match the ID of a youtube video URL",
-      "ru": "Match the ID of a youtube video URL"
+      "en": "Match the URL of a YouTube",
+      "ru": "Соответствует любому URL с YouTube"
     },
-    "tags": "youtube,youtube id,video,uri",
-    "nickname": null
-  },
-  {
-    "title": {
-      "en": "ID of Youtube Channel",
-      "ru": "ID of Youtube Channel"
-    },
-    "pattern": "https?:\\/\\/(www\\.)?youtube.com\\/channel\\/UC([-_a-z0-9]{22})/i",
-    "placeholder": "https://youtube.com/channel/UCoswYMTz68KlHKn3oEzTm4A",
-    "description": {
-      "en": "Match the ID of a YouTube channel URL",
-      "ru": "Соответствует ID канала YouTube"
-    },
-    "tags": "youtube,youtube channel,youtube channel id,uri",
-    "nickname": null
+    "tags": "youtube,youtube id,uri",
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
       "en": "CSS comment",
       "ru": "CSS комментарий"
     },
-    "pattern": "\\/\\*[^*]*\\*+([^\\/*][^*]*\\*+)*\\/",
-    "placeholder": "* my text *",
+    "pattern": "/(\/\*)(.|\r|\n)*?(\*\/)/g",
+    "placeholder": "/* my text */",
     "description": {
-      "en": "Match standard CSS comments",
-      "ru": "Соответствует CSS комментарию"
+      "en": "Match standard CSS comments (incl. multiline)",
+      "ru": "Соответствует CSS комментарию (вкл. многострочные)"
     },
     "tags": "css,comments,standard,other",
-    "nickname": null
+    "nickname": "@Archakov06"
+  },
+  {
+    "title": {
+      "en": "JS comment",
+      "ru": "JS комментарий"
+    },
+    "pattern": "/\/\/(?![\S]{2,}\.[\w]).*|\/\*(.|\n)+?\*\//g",
+    "placeholder": "//Something like this",
+    "description": {
+      "en": "Match standard JS comments (incl. multiline)",
+      "ru": "Соответствует JS комментариям (вкл. многострочные)"
+    },
+    "tags": "js,comments,standard,other",
+    "nickname": "@limitedeternity"
   },
   {
     "title": {
@@ -284,10 +326,10 @@
     "placeholder": "20151",
     "description": {
       "en": "Matches US ZIP, ZIP+4, and Canadian Postal Codes",
-      "ru": "Matches US ZIP, ZIP+4, and Canadian Postal Codes"
+      "ru": "Соответствует почтовым индексам амер. и канад. формата"
     },
     "tags": "postal code,zip code,zip,code,us,canadian,numbers",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
@@ -301,11 +343,11 @@
       "ru": "Долларовые суммы с символом $"
     },
     "tags": "dollar,amounts,symbol,number,string",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
-      "en": "Regular expression for Float value",
+      "en": "Float value",
       "ru": "Значение с плав. запятой"
     },
     "pattern": "^[0-9]*.[0-9]*[1-9]+$",
@@ -315,34 +357,76 @@
       "ru": "Любое значение с плав. запятой н.п: 1.2, 2.009 или .987, но не 1.00 или 239"
     },
     "tags": "float,point,value,numbers",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
-      "en": "Domain Name",
+      "en": "Domain name",
       "ru": "Имя домена"
     },
-    "pattern": "^[a-z0-9]+[a-z0-9-.]*[a-z0-9]+.[a-z.]{2,5}$",
+    "pattern": "/(?!w{1,}\.)(\w+\.?)([a-zA-Z]+)(\.\w+)/g",
     "placeholder": "site.com",
     "description": {
-      "en": "Regular expression for Domain Name",
-      "ru": "Регулярное выражение для доменного имени"
+      "en": "Matches domain name",
+      "ru": "Соответствует доменному имени"
     },
     "tags": "domain,name,site,www,strings",
-    "nickname": null
+    "nickname": "@Archakov06"
   },
   {
     "title": {
       "en": "Password strength",
       "ru": "Надежность пароля"
     },
-    "pattern": "^[a-zA-Z0-9_-]\\w{6,18}$",
+    "pattern": "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm",
     "placeholder": "SGhowk1E",
     "description": {
       "en": "Password strength. Example: SGhowk1E",
       "ru": "Надежность пароля. Пример: SGhowk1E"
     },
     "tags": "password,strength,pwd,strings",
-    "nickname": null
+    "nickname": "@limitedeternity"
+  },
+  {
+    "title": {
+      "en": "2-5 letters palindromes",
+      "ru": "2-5 буквенные палиндромы"
+    },
+    "pattern": "/\b(\w)?(\w)\w?\2\1/",
+    "placeholder": "noon",
+    "description": {
+      "en": "Palindromes of 2-5 letters. Example: noon / dad",
+      "ru": "Палиндромы из 2-5 букв. Пример: noon / dad"
+    },
+    "tags": "palindromes,strings,other",
+    "nickname": "@limitedeternity"
+  },
+  {
+    "title": {
+      "en": "Hashtags",
+      "ru": "Хэштеги"
+    },
+    "pattern": "/\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\/'\[\]\{\}]|[?.,]*\w)/ig",
+    "placeholder": "#wtf",
+    "description": {
+      "en": "Matches hashtags",
+      "ru": "Соответствует хэштегам"
+    },
+    "tags": "hashtags,strings,other",
+    "nickname": "@limitedeternity"
+  },
+  {
+    "title": {
+      "en": "Periodic table elements",
+      "ru": "Элементы периодической таблицы"
+    },
+    "pattern": "/\b(?:A[cglmr-u]|B[aehikr]?|C[adefl-orsu]?|D[bsy]|E[rsu]|F[elmr]?|G[ade]|H[efgos]?|I[nr]?|Kr?|L[airuv]|M[dgont]|N[abdeiop]?|Os?|P[abdmortu]?|R[abe-hnu]|S[bcegimnr]?|T[abcehilm]|U(?:u[opst])?|V|W|Xe|Yb?|Z[nr])\b/g",
+    "placeholder": "Au",
+    "description": {
+      "en": "Matches periodic table elements",
+      "ru": "Соответствует элементам периодической таблицы"
+    },
+    "tags": "elements,chem,strings,other",
+    "nickname": "@limitedeternity"
   }
 ]
