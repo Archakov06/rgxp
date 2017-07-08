@@ -27,14 +27,14 @@
     "tags": "windows,path,directory,other",
     "nickname": "@Archakov06"
   },
-  }
+  {
     "title": {
       "en": "Unix directory (file) path",
       "ru": "Unix путь к директории (файлу)"
     },
     "description": {
-      "en": "It takes the path to the file or directory.",
-      "ru": "Принимает путь к файлу или директории."
+      "en": "It takes the path to the file or directory. Works only with Unix-like paths",
+      "ru": "Принимает путь к файлу или директории. Работает только с путями Unix вида"
     },
     "pattern": "([^ !$`&*()+]|(\\[ !$`&*()+]))+",
     "placeholder": "/usr/lib/libgccpp.so",
