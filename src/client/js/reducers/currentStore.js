@@ -119,6 +119,7 @@ export default function currentStore(state = initialState, action) {
         patterns: patterns
       }
     case 'SEACH_PATTERNS':
+      console.log(action.payload);
       const val = action.payload.toLowerCase();
       return {
         ...state,

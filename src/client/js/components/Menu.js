@@ -64,7 +64,7 @@ export default class Menu extends Component {
               id='search-input'
               type='text'
               ref={input => this.searchInput = input}
-              onKeyUp={this.search.bind(this)}
+              onKeyUp={this.search.bind(this, null)}
               placeholder={dict.searchPlaceholder}
             />
           </li>
