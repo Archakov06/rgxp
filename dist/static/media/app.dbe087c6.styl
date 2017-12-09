@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=cyrillic');
+
+@import 'tippy.styl';
+@import 'variables.styl';
+
+$textColor = rgba(0,0,0,0.9);
+$bgColor = #f3f3f7; // #efeff0
+
+$padding = 20px;
+$inputHeight = 39px;
+$containerWidth = 1100px;
+$blockMarginBottom = 35px;
+$marginRightBlock = 3.8%;
+$marginBlockWidth = 30.8%;
+
+white_block(br = 5px)
+	background #FFFFFF
+	box-shadow 0px 4px 15px 0px rgba(0,0,0,0.04)
+	border-radius br
+
+*
+	margin 0
+	padding 0
+	list-style none
+	outline none
+	box-sizing border-box
+	-webkit-box-sizing border-box
+	font-family 'Open Sans'
+
+button, a, input, textarea
+	font-size 14px
+
+.button
+	padding 10px 20px
+	border-radius 30px
+	border 0
+	background-color #fff
+	border 1px solid transparent
+	cursor pointer
+	letter-spacing 0.2px
+
+	&--green
+		color white
+		min-width 120px
+		background-color #87cc76
+		border-color #78b768
+
+		&:hover
+			background lighten(#87cc76, 5%)
+
+	&--white
+		min-width 120px
+		color $textColor
+		border-color #e5e5e5
+
+		&:hover
+			background-color lighten(#e5e5e5, 80%)
+			border-color lighten(#e5e5e5, 30%)
+
+	&--purple
+		min-width 150px
+		color #fff
+		background-color #7493FF
+		border-color darken(#7493FF, 10%)
+
+		&:hover
+			background-color lighten(#7493FF, 5%)
+
+input, textarea
+	background #FFFFFF
+	border 1px solid #EEEEEF
+	border-radius 50px
+	height $inputHeight
+	font-size 14px
+
+	&.error
+		border-color #fbadad
+
+	&.gray-input
+		background #FAFAFC
+
+	&::-webkit-input-placeholder
+		color rgba(0,0,0,0.2)
+
+	&::-moz-placeholder
+		color rgba(0,0,0,0.2)
+
+
+	&:-moz-placeholder
+		color rgba(0,0,0,0.2)
+
+
+	&:-ms-input-placeholder
+		color rgba(0,0,0,0.2)
+
+	&:focus
+		border-color darken(#eeeeef, 6%)
+
+textarea
+	border-radius 10px
+
+body
+	background-color $bgColor
+	font-family 'Open Sans'
+	font-size 14px
+
+.addForm
+
+	.row
+		margin-bottom 10px
+
+	.tag
+		display flex
+		text-align center
+		margin-right 5px
+		padding 6px 10px
+		background-color rgb(244, 244, 255)
+		border-radius 4px
+		color #2b2b2b
+		align-items center
+
+		i
+			font-style normal
+			opacity 0.2
+			margin-left 5px
+			cursor pointer
+
+			&:hover
+				opacity 0.5
+
+	&__group
+		margin-bottom 10px
+
+		input, textarea
+			width 100%
+			padding 15px
+
+		textarea
+			min-height 110px
+
+		& > span
+			display block
+			margin-bottom 10px
+
+		&--tags
+
+			& > div
+				display flex
+				flex-wrap wrap
+
+				div
+					margin-bottom 5px
+
+				input
+					border 0
+					padding-left 5px
+					padding-right 0
+					border-radius 0
+					width auto
+					height 31px
+
+					&.error
+						border 1px solid
+						color #fbadad
+						border-radius 30px
+						padding 19px
+
+.header
+	display flex
+	margin-top ($blockMarginBottom / 1.2)
+	margin-bottom ($blockMarginBottom / 1.2)
+	justify-content space-between
+
+	&__language
+		padding 0 50px
+		cursor pointer
+
+		span
+			margin-left 10px
+
+	&__right
+		display flex
+		align-items center
+
+		button
+			padding 11px 30px
+
+	&__logo
+
+		svg#logo
+			width 150px
+			height 50px
+			cursor pointer
+
+.footer
+	border-top 1px solid #E1E1E1
+	padding-top 40px
+	padding-bottom 40px
+
+	ul
+		display flex
+		justify-content space-around
+
+		li
+
+			a, span
+				color #9F9F9F
+				text-decoration none
+
+			a:hover
+				cursor pointer
+				color darken(#9F9F9F, 40%)
+
+.container
+	max-width $containerWidth
+	width 100%
+	margin 0 auto
+
+.white-block
+	white_block()
+
+.patterns
+	display flex
+	flex-wrap wrap
+
+	&__no-result
+		padding 10% 0 15%
+		width 100%
+		text-align center
+
+		h2
+			font-size 2.5rem
+			font-weight 100
+			margin-bottom 5px
+
+		p
+			font-size 1.5rem
+			font-weight 100
+			color #949494
+
+.pattern-block
+	width 31%
+	margin-right 3.5%
+	margin-bottom 3%
+
+	&--placeholder
+
+		.pattern-block__head
+			div
+				padding: 10px;
+				background-color: darken(#FAFAFC, 0.5%);
+				width: 100%;
+				animation animate-placeholder 0.5s ease infinite
+
+		.pattern-block__pattern-input
+			div
+				padding: 19px;
+				background-color: darken(#FAFAFC, 0.5%);
+				width: 100%;
+				border-radius 30px
+				animation animate-placeholder 0.5s ease infinite
+
+		.pattern-block__pattern-test
+			div
+				padding: 19px;
+				background-color: #fff;
+				border 1px solid darken(#FAFAFC, 2%)
+				width: 100%;
+				border-radius 30px
+				animation animate-placeholder 0.5s ease infinite
+
+		.pattern-block__pattern-tags
+			li
+				padding 14px 10px !important
+				animation animate-placeholder 0.5s ease infinite
+
+	&:nth-of-type(3n)
+		margin-right 0
+
+	&__pattern-input
+		cursor pointer
+		
+		input
+			cursor pointer
+
+	&__head
+		padding $padding
+		border-bottom 2px solid transparent
+		display flex
+		border-bottom-color #f1f1f1
+
+		&--email
+			border-bottom-color #FFD07A
+
+		&--uri
+			border-bottom-color #7CC0FF
+
+		&--numbers
+			border-bottom-color #FF8C8C
+
+		&--strings
+			border-bottom-color #D366D5
+
+		&--date-time
+			border-bottom-color #669ED5
+
+		&--misc
+			border-bottom-color #D56666
+
+		b
+			flex 1
+
+		#info-icon
+			opacity 0.3
+			transition all 0.3s
+			cursor pointer
+			width 19px
+			height 19px
+
+			&:hover
+				opacity 0.8
+
+		b
+			font-weight 700
+
+	&__content
+		padding $padding
+
+		input
+			width 100%
+			padding-left 20px
+			padding-right 20px
+			text-align center
+
+			&.has-status
+				//padding-left 50px
+
+	&__pattern
+
+		&-tags
+			display flex
+			justify-content space-between
+			align-items flex-start
+			flex-wrap wrap
+
+			li
+				flex 1
+				text-align center
+				margin-right 5px
+				padding 6px 10px
+				background-color rgb(244, 244, 255)
+				border-radius 4px
+				color #2b2b2b
+				font-size 12px
+				cursor pointer
+				white-space nowrap
+				overflow hidden;
+				text-overflow ellipsis
+
+				&:last-child
+					margin-left 0
+
+				&:hover
+					background-color #eeeefb
+
+			&--matches
+				margin-top 5px
+
+				&:empty
+					display none
+
+				li
+					background-color #fff4f4
+
+					&:hover
+						background-color #fbeeee
+
+		&-author
+			padding-top 20px
+			opacity 0.4
+
+			&:hover
+				opacity 1
+
+			svg
+				width 24px
+				height 24px
+
+			span
+				position relative
+				top -6px
+				left 5px
+				color $textColor
+
+		&-test
+			margin-top 20px
+
+		&-bottom
+			display flex
+			margin-top 20px
+			flex-direction column
+
+		&-vote
+			display flex
+			margin-left 10px
+
+			li
+				padding 5px
+
+				b
+					color #bfbfbf
+
+					&.positive
+						color #5ec56b
+
+					&.negative
+						color #e27373
+
+				svg
+					width 12px
+					height 12px
+					opacity 0.2
+					cursor pointer
+					fill #000
+
+					&:hover
+						opacity 1
+
+				&:first-child
+					svg:hover
+						fill #5ec56b
+
+				&:last-child
+					svg
+						transform rotate(180deg)
+
+						&:hover
+							use
+								fill #e27373
+
+	&__pattern-status
+		position absolute
+		border-radius 100px 0px 0px 100px
+		height $inputHeight
+		width $inputHeight
+
+		&--green
+			background #26C433
+			border 1px solid #0CAB17
+
+			#complete-icon
+				display block
+				width 37%
+				height 37%
+
+		&--red
+			background #F05858
+			border 1px solid #C82121
+
+			#error-icon
+				display block
+
+		svg
+			display none
+			position absolute
+			width 30%
+			height 30%
+			left 55%
+			top 49%
+			transform translate(-50%,-50%)
+
+.menu-block
+	margin-bottom $blockMarginBottom
+
+	ul
+		display flex
+		padding-left 30px
+		padding-right 30px
+
+		li.menu-block__item
+			display inline-block
+			flex 1
+			text-align center
+
+			a
+				cursor pointer
+
+			&.active
+				a
+					background-color rgba(243, 243, 247, 0.3)
+
+			&:hover
+
+				& > ul
+					display block
+
+			& > ul
+				display none
+				position absolute
+				z-index 1
+				white_block(0 0 6px 6px)
+				transition all 0.3s
+				padding 0
+
+				li
+					a
+						text-align left
+						padding $padding $padding*2
+						width 100%
+
+			a
+				display inline-block
+				padding $padding 0
+				color black
+				text-decoration none
+				border-bottom 2px solid transparent
+				width 100%
+				text-align center
+
+				&:hover
+					background-color rgba(243, 243, 247, 0.3)
+
+			&--email.active, &--email:hover
+				a
+					border-bottom-color #FFD07A
+
+			&--uri.active, &--uri:hover
+				a
+					border-bottom-color #7CC0FF
+
+			&--numbers.active, &--numbers:hover
+				a
+					border-bottom-color #FF8C8C
+
+			&--strings.active, &--strings:hover
+				a
+					border-bottom-color #D366D5
+
+			&--date-time.active, &--date-time:hover
+				a
+					border-bottom-color #669ED5
+
+			&--misc.active, &--misc:hover
+				a
+					border-bottom-color #D56666
+
+			&--search
+				padding 10px
+				flex 2
+				position relative
+
+				svg
+					width 16px
+					height 16px
+					position absolute
+					opacity 0.15
+					top 22px
+					left 25px
+
+				input
+					padding-left 40px
+					padding-right 30px
+					width 100%
+
+@media (max-width: 1110px)
+
+	.container
+		max-width 1100px
+		width 90%
+
+	.menu-block ul li.menu-block__item--search
+		display none
+
+	.pattern-block
+		width 48%
+		margin-bottom 4%
+		margin-right 0
+
+	.patterns
+		justify-content space-between
+
+@media (max-width: 730px)
+	.pattern-block
+		width 100%
+		margin-bottom 6%
+
+	.menu-block ul
+		flex-direction column
+		padding 0
+
+		& > li.menu-block__item ul
+			width 90%
+
+	.footer ul
+		flex-wrap wrap
+
+		li
+			margin-bottom 10px
+
+@keyframes animate-placeholder
+	0%
+		opacity 1
+	50%
+		opacity 0.5
+	100%
+		opacity 1
