@@ -1,0 +1,303 @@
+.tippy-touch {
+  cursor: pointer !important;
+}
+.tippy-popper {
+  visibility: hidden;
+  max-width: 400px;
+  perspective: 800px;
+  z-index: 9999;
+}
+.tippy-popper.html-template {
+  max-width: 96%;
+  max-width: calc(100% - 20px);
+}
+.tippy-popper[x-placement=top] [x-arrow] {
+  transform: rotate(-45deg);
+  bottom: -5px;
+}
+.tippy-popper[x-placement=top] [x-circle].enter {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -47.5%);
+}
+.tippy-popper[x-placement=top] [x-circle].leave {
+  opacity: 0;
+  transform: scale(0) translate(-50%, -50%);
+}
+.tippy-popper[x-placement=top] [data-animation=none].enter {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+.tippy-popper[x-placement=top] [data-animation=none].leave {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+.tippy-popper[x-placement=top] [data-animation=perspective].enter {
+  opacity: 1;
+  transform: translateY(-10px) rotateX(0);
+}
+.tippy-popper[x-placement=top] [data-animation=perspective].leave {
+  opacity: 0;
+  transform: translateY(0) rotateX(90deg);
+}
+.tippy-popper[x-placement=top] [data-animation=fade].enter {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+.tippy-popper[x-placement=top] [data-animation=fade].leave {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.tippy-popper[x-placement=top] [data-animation=shift].enter {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+.tippy-popper[x-placement=top] [data-animation=shift].leave {
+  opacity: 0;
+  transform: translateY(0);
+}
+.tippy-popper[x-placement=top] [data-animation=scale].enter {
+  opacity: 1;
+  transform: translateY(-10px) scale(1);
+}
+.tippy-popper[x-placement=top] [data-animation=scale].leave {
+  opacity: 0;
+  transform: translateY(0) scale(0);
+}
+.tippy-popper[x-placement=bottom] [x-arrow] {
+  transform: rotate(135deg);
+  top: -5px;
+}
+.tippy-popper[x-placement=bottom] [x-circle].enter {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -47.5%);
+}
+.tippy-popper[x-placement=bottom] [x-circle].leave {
+  opacity: 0;
+  transform: scale(0) translate(-50%, -50%);
+}
+.tippy-popper[x-placement=bottom] [data-animation=none].enter {
+  opacity: 1;
+  transform: translateY(10px);
+}
+.tippy-popper[x-placement=bottom] [data-animation=none].leave {
+  opacity: 1;
+  transform: translateY(10px);
+}
+.tippy-popper[x-placement=bottom] [data-animation=perspective].enter {
+  opacity: 1;
+  transform: translateY(10px) rotateX(0);
+}
+.tippy-popper[x-placement=bottom] [data-animation=perspective].leave {
+  opacity: 0;
+  transform: translateY(0) rotateX(-90deg);
+}
+.tippy-popper[x-placement=bottom] [data-animation=fade].enter {
+  opacity: 1;
+  transform: translateY(10px);
+}
+.tippy-popper[x-placement=bottom] [data-animation=fade].leave {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.tippy-popper[x-placement=bottom] [data-animation=shift].enter {
+  opacity: 1;
+  transform: translateY(10px);
+}
+.tippy-popper[x-placement=bottom] [data-animation=shift].leave {
+  opacity: 0;
+  transform: translateY(0);
+}
+.tippy-popper[x-placement=bottom] [data-animation=scale].enter {
+  opacity: 1;
+  transform: translateY(10px) scale(1);
+}
+.tippy-popper[x-placement=bottom] [data-animation=scale].leave {
+  opacity: 0;
+  transform: translateY(0) scale(0);
+}
+.tippy-popper[x-placement=left] [x-arrow] {
+  transform: rotate(225deg);
+  right: -5px;
+  top: 50%;
+}
+.tippy-popper[x-placement=left] [x-circle].enter {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -47.5%);
+}
+.tippy-popper[x-placement=left] [x-circle].leave {
+  opacity: 0;
+  transform: scale(0) translate(-50%, -33%);
+}
+.tippy-popper[x-placement=left] [data-animation=none].enter {
+  opacity: 1;
+  transform: translateX(-10px);
+}
+.tippy-popper[x-placement=left] [data-animation=none].leave {
+  opacity: 1;
+  transform: translateX(-10px);
+}
+.tippy-popper[x-placement=left] [data-animation=perspective].enter {
+  opacity: 1;
+  transform: translateX(-10px) rotateY(0);
+}
+.tippy-popper[x-placement=left] [data-animation=perspective].leave {
+  opacity: 0;
+  transform: translateX(0) rotateY(-90deg);
+}
+.tippy-popper[x-placement=left] [data-animation=fade].enter {
+  opacity: 1;
+  transform: translateX(-10px);
+}
+.tippy-popper[x-placement=left] [data-animation=fade].leave {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.tippy-popper[x-placement=left] [data-animation=shift].enter {
+  opacity: 1;
+  transform: translateX(-10px);
+}
+.tippy-popper[x-placement=left] [data-animation=shift].leave {
+  opacity: 0;
+  transform: translateX(0);
+}
+.tippy-popper[x-placement=left] [data-animation=scale].enter {
+  opacity: 1;
+  transform: translateX(-10px) scale(1);
+}
+.tippy-popper[x-placement=left] [data-animation=scale].leave {
+  opacity: 0;
+  transform: translateX(0) scale(0);
+}
+.tippy-popper[x-placement=right] [x-arrow] {
+  transform: rotate(45deg);
+  left: -5px;
+  top: 50%;
+}
+.tippy-popper[x-placement=right] [x-circle].enter {
+  opacity: 1;
+  transform: scale(1) translate(-50%, -47.5%);
+}
+.tippy-popper[x-placement=right] [x-circle].leave {
+  opacity: 0;
+  transform: scale(0) translate(-50%, -33%);
+}
+.tippy-popper[x-placement=right] [data-animation=none].enter {
+  opacity: 1;
+  transform: translateX(10px);
+}
+.tippy-popper[x-placement=right] [data-animation=none].leave {
+  opacity: 1;
+  transform: translateX(10px);
+}
+.tippy-popper[x-placement=right] [data-animation=perspective].enter {
+  opacity: 1;
+  transform: translateX(10px) rotateY(0);
+}
+.tippy-popper[x-placement=right] [data-animation=perspective].leave {
+  opacity: 0;
+  transform: translateX(0) rotateY(90deg);
+}
+.tippy-popper[x-placement=right] [data-animation=fade].enter {
+  opacity: 1;
+  transform: translateX(10px);
+}
+.tippy-popper[x-placement=right] [data-animation=fade].leave {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.tippy-popper[x-placement=right] [data-animation=shift].enter {
+  opacity: 1;
+  transform: translateX(10px);
+}
+.tippy-popper[x-placement=right] [data-animation=shift].leave {
+  opacity: 0;
+  transform: translateX(0);
+}
+.tippy-popper[x-placement=right] [data-animation=scale].enter {
+  opacity: 1;
+  transform: translateX(10px) scale(1);
+}
+.tippy-popper[x-placement=right] [data-animation=scale].leave {
+  opacity: 0;
+  transform: translateX(0) scale(0);
+}
+.tippy-tooltip {
+  position: relative;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  line-height: 24px;
+  text-align: center;
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #333;
+}
+.tippy-tooltip [x-arrow] {
+  z-index: -1;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-color: transparent transparent #333 #333;
+}
+.tippy-tooltip[data-animatefill] {
+  overflow: hidden;
+  background-color: transparent;
+}
+.tippy-tooltip[data-inertia] {
+  -webkit-transition-timing-function: cubic-bezier(0.53, 1, 0.36, 0.85);
+  transition-timing-function: cubic-bezier(0.53, 2, 0.36, 0.85);
+}
+.tippy-tooltip [x-circle] {
+  position: absolute;
+  will-change: transform;
+  background-color: #333;
+  border-radius: 50%;
+  width: 120%;
+  width: calc(100% + 2rem);
+  left: 50%;
+  transition: all ease-out;
+  z-index: -1;
+  opacity: 0;
+  overflow: hidden;
+}
+.tippy-tooltip [x-circle]::before {
+  content: '';
+  padding-top: 100%;
+  padding-top: calc(75% + 2rem);
+  float: left;
+}
+.tippy-tooltip.light-theme {
+  color: #203d5d;
+  box-shadow: 0 0 16px -4px rgba(0,20,40,0.15), 0 0 80px -10px rgba(0,20,40,0.2);
+  background-color: #fff;
+}
+.tippy-tooltip.light-theme [x-circle] {
+  background-color: #fff;
+}
+.tippy-tooltip.light-theme [x-arrow] {
+  background-color: #fff;
+  border-color: transparent transparent #ced2e2 #ced2e2;
+}
+.tippy-tooltip.light-theme[data-animatefill] {
+  background-color: transparent;
+}
+.tippy-iOS-fix.tippy-popper[x-placement=top] [x-circle].leave {
+  transform: scale(0) translate3d(-50%, -50%, 0);
+}
+.tippy-iOS-fix.tippy-popper[x-placement=bottom] [x-circle].leave {
+  transform: scale(0) translate3d(-50%, -50%, 0);
+}
+.tippy-iOS-fix.tippy-popper[x-placement=left] [x-circle].leave {
+  transform: scale(0) translate3d(-50%, -33%, 0);
+}
+.tippy-iOS-fix.tippy-popper[x-placement=right] [x-circle].leave {
+  transform: scale(0) translate3d(-50%, -33%, 0);
+}
+@media (max-width: 500px) {
+  .tippy-popper {
+    max-width: 96%;
+    max-width: calc(100% - 20px);
+  }
+}
