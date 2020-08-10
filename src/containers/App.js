@@ -28,7 +28,7 @@ const lifecycleMethods = lifecycle({
 const handlers = withHandlers({
   fetchPatterns: ({ setPatterns }) => () => {
     axios
-      .get('http://5b3757f86223c40014605837.mockapi.io/patterns')
+      .get('https://5b3757f86223c40014605837.mockapi.io/patterns')
       .then(({ data }) => {
         setPatterns(data);
       })
