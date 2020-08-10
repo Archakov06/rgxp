@@ -546,7 +546,7 @@ body {
       display: inline-block;
       flex: 1;
       text-align: center;
-      a {
+      span {
         cursor: pointer;
         display: inline-block;
         padding: 20px 0;
@@ -574,7 +574,7 @@ body {
         transition: all 0.3s;
         padding: 0;
         li {
-          a {
+          span {
             text-align: left;
             padding: 20px 40px;
             width: 100%;
