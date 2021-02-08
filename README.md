@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# ![RGXP.RU](https://archakov.im/uploads/rgxp-logo.svg?1)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Набор готовых регулярных выражений на все случаи жизни 👀
+Проект open-source и каждый желающий может помочь проекту. Задается вопрос: "Как?".
 
-## Available Scripts
+1.  Добавив своих регулярных выражений.
+2.  Посоветовать более элегантное решение (по коду).
+3.  Поделиться своими идеями по развитию этого проекта (в issues).
 
-In the project directory, you can run:
+![](https://archakov.im/uploads/rgxp.png)
 
-### `yarn start`
+## Зачем?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Я отвечу сразу на несколько вопросов - **затем**. Мне часто требовались регулярные выражения на разные случаи. И чаще всего, я их находил в StackOverflow или на Toster. Однако, хотелось базу регулярных выражений на все возможные случаи.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+В итоге, было решено создать этот проект - [RGXP.RU](https://rgxp.ru)
 
-### `yarn test`
+## Что использовалось при разработке?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Front end:** ReactJS, Redux, Recompose, React Router, Stylus.
+- **Back end:** NodeJS, Express, Knex.
+- ECMAScript 6 (клиент и сервер).
+- Webpack
 
-### `yarn build`
+## Как добавить свои регулярные выражения?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Все паттерны содержатся в файле **patterns.json**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Внимание!** Перед тем, как отправить свои паттерны, проверьте JSON на валидность - https://jsonlint.com/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Чтобы добавить свой паттерн, создайте **pull request** соблюдая следующий шаблон:
 
-### `yarn eject`
+```json
+{
+  "title": {
+    "en": "Title in english",
+    "ru": "Заголовок на русском"
+  },
+  "description": {
+    "en": "Description in english",
+    "ru": "Описание на русском"
+  },
+  "pattern": "<title>(.*?)</title>",
+  "placeholder": "<title>My site</title>",
+  "tags": "title,html,tags",
+  "nickname": "Archakov06"
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th style="width: 100px;">name</th>
+        <th style="width: 50px;">type</th>
+        <th style="width: 50px;">required</th>
+        <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>title</td>
+      <td>object</td>
+      <td>yes</td>
+      <td>Заголовок. Объект состоящий из двух свойств: <b>ru</b> и <b>en</b> (string, required).</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>object</td>
+      <td>yes</td>
+      <td>Описание паттерна. Объект состоящий из двух свойств: <b>ru</b> и <b>en</b> (string, required).</td>
+    </tr>
+    <tr>
+      <td>pattern</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Регулярное выражения (шаблон).</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>yes</td>
+      <td>Подсказка <br>(<i>в основном, указывается значение соответствующее паттерну</i>)</td>
+    </tr>
+    <tr>
+      <td>tags</td>
+      <td>string</td>
+      <td>optional</td>
+      <td>Основные тэги вашего паттерна. Указывать через запятую.<br>(<i>требуется для поиска и категорий</i>).</td>
+    </tr>
+    <tr>
+      <td>nickname</td>
+      <td>string</td>
+      <td>optional</td>
+      <td>Ваш никнейм от GitHub</td>
+    </tr>
+    </tbody>
+</table>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Как оповестить о баге или предложить идею?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Вы можете создать issue в разделе
+<https://github.com/Archakov06/trycode/issues>. Если у вас есть вопросы, предложения или вы хотите поругать меня за быдлокод, свяжитесь со мной через GitHub или через контакты ниже. (p.s.: Обратите внимание, что проект на стадии beta).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Telegram: [@archakov06](https://t.me/archakov06)
+- Вконтакте: https://vk.com/amonbower
+- E-Mail: [hello@archakov.im](mailto:hello@archakov.im)
 
-## Learn More
+## Обновления
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##### Update 10.12.2017
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Переписал весь быдлокод на новый быдлокод (рефакторинг)
+- Заменил некоторые классы на stateless component.
+- Подключил библиотеку Recompose (HOC).
+- Подключил React Router.
+- Добавил поддержку копирования выражений одним кликом.
+- Пересоздал проект через CRA (create-react-app).
+- Я - молодец.
 
-### Code Splitting
+##### Update 08.07.2017
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Поправил исходники по правилам ESLint.
+- Обновил правила eslint.
+- Поправил паттерны (отдельное спасибо [@limitedeternity](https://github.com/limitedeternity) за перевод остального текста).
+- Небольшие правки с компонентом паттерна. Добавил слэши в начале и в конце к каждому паттерну. Сделал выделение паттерна при клике на поле.
+- Я - молодец.
 
-### Analyzing the Bundle Size
+##### Update 1.07.2017
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Поправил баг с тем, что паттерны отображались после второго клика на тэг (категорию).
+- Поправил немного стили.
+- Решили обновы писать в README. Не знаю, хорошая ли это идея.
 
-### Making a Progressive Web App
+##### Update 29.06.2017
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Добавил функцию просмотра всех совпадений по паттерну.
+- Добавил новых паттернов.
+- Поправил адаптивку.
 
-### Advanced Configuration
+##### Update 28.06.2017
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Добавил возможность открывать определенный тэг по запросу.
+- Удалил рейтинг (временно).
+- Разделил конфиги для webpack (dev/prod).
+- Перенес паттерны на репозиторий (временно, а может и нет).
+- Добавил больше правил для ESLint.
+- Разделил стили от бандла.
+- Поправил поиск паттернов.
+- Небольшие фиксы.
+- В общем, я красавчик!
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License - Archakov Denis 2017
