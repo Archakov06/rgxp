@@ -10,7 +10,7 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
-    "immer": "^8.0.1",
+    "immer": "^9.0.6",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
